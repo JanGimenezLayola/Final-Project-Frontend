@@ -26,21 +26,19 @@ class Login extends Component {
   }
 
   render() {
-    const { username, password } = this.state;
+    const { email, password } = this.state;
     return (
-      <>
+      <section className="main-splash">
         <form onSubmit={this.handleFormSubmit}>
-          <label htmlFor='username' >Username:</label>
-          <input id='username' type='text' name='username' value={username} onChange={this.handleChange} autoComplete="username"/>
-          <label htmlFor='password'>Password:</label>
-          <input id='password' type='password' name='password' value={password} onChange={this.handleChange} autoComplete="current-password"/>
-          <input type='submit' value='Login' />
+          <input id='email' type='email' name='email' placeholder='email' value={email} onChange={this.handleChange} autoComplete="email" />
+          <input id='password' type='password' name='password' placeholder='password' value={password} onChange={this.handleChange} autoComplete="current-password"/>
+          <input className='submit-button' type='submit' value='Login' />
         </form>
 
         <p>You don't have an accout yet?
-            <Link to={'/signup'}> Signup</Link>
+            <Link to={'/signup'}>Signup</Link>
         </p>
-      </>
+      </section>
     )
   }
 }

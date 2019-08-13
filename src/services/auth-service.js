@@ -9,14 +9,19 @@ class AuthService {
   }
 
   signup (user) {
-    const { username, password } = user;
-    return this.auth.post('/auth/signup', { username, password })
+    const { email, password, passwordRepeat } = user;
+    if(password === passwordRepeat) {
+      return this.auth.post('/auth/signup', { email, password })
       .then(({ data }) => data);
+    } else {
+      console.log('the password doesnt match');
+      
+    }
   }
 
   login (user) {
-    const { username, password } = user;
-    return this.auth.post('/auth/login', { username, password })
+    const { email, password } = user;
+    return this.auth.post('/auth/login', { email, password })
       .then(({ data }) => data);
   }
 

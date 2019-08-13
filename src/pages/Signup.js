@@ -7,21 +7,24 @@ import withAuth from '../components/withAuth';
 class Signup extends Component {
 
   state = {
-    username: '',
+    email: '',
     password: '',
+    passwordRepeat: '',
   };
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    const username = this.state.username;
+    const email = this.state.email;
     const password = this.state.password;
+    const passwordRepeat = this.state.passwordRepeat;
 
-    this.props.signup({ username, password })
+    this.props.signup({ email, password, passwordRepeat })
       .then( (user) => {
         console.log(user)
         this.setState({
-            username: '',
+            email: '',
             password: '',
+            passwordRepeat: '',
         });
       })
       .catch( error => console.log(error) )
@@ -33,22 +36,21 @@ class Signup extends Component {
   }
 
   render() {
-    const { username, password } = this.state;
+    const { email, password , passwordRepeat} = this.state;
     return (
-      <>
+      <section className="main-splash">
         <form onSubmit={this.handleFormSubmit}>
-          <label htmlFor='username'>Username:</label>
-          <input id='username' type='text' name='username' value={username} onChange={this.handleChange} autoComplete="username"/>
-          <label htmlFor='password'>Password:</label>
-          <input id='password' type='password' name='password' value={password} onChange={this.handleChange} autoComplete="new-password" />
-          <input type='submit' value='Signup' />
+          <input id='email' type='email' name='email' placeholder='email' value={email} onChange={this.handleChange} autoComplete="username"/>
+          <input id='password' type='password' name='password' placeholder='password' value={password} onChange={this.handleChange} autoComplete="new-password" />
+          <input id='passwordRepeat' type='password' name='passwordRepeat' placeholder=' repeat password' value={passwordRepeat} onChange={this.handleChange} autoComplete="new-password" />
+          <input className='submit-button' type='submit' value='Signup' />
         </form>
 
         <p>Already have account? 
-          <Link to={'/login'}> Login</Link>
+          <Link to={'/'}> Login</Link>
         </p>
 
-      </>
+      </section>
     )
   }
 }
