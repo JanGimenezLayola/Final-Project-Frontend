@@ -22,7 +22,6 @@ This is an app to manage and organize your trips with your travel colleagues. Th
 -  **Edit Activities:** As a user I can edit a activities  to update their information 
 -  **View Activities Calendar:** As a user I want to see the activities calendar
 -  **View remaining days:** As a user I want to see the  remaining days in dashboard
--  **View Activities Calendar:** As a user I want to see the activities calendar
 -  **Add expense to budget:** As a user I want to add expense to control the trip budget
 
 
@@ -54,47 +53,45 @@ Chat:
 ## Routes
 | Path                      | Component            | Permissions | Behavior                                                     |
 | ------------------------- | -------------------- | ----------- | ------------------------------------------------------------ |
-| `/`                       | SplashPage           | public      | Home page                                        |
-| `/auth/signup`            | SignupPage           | anon only   | Signup form, link to login, navigate to homepage after signup |
-| `/auth/login`             | LoginPage            | anon only   | Login form, link to signup, navigate to homepage after login |
-| `/auth/logout`            | n/a                  | anon only   | Navigate to homepage after logout, expire session            |
-| `/tournaments`            | TournamentListPage   | user only   | Shows all tournaments in a list                              |
-| `/tournaments/add`        | TournamentListPage   | user only   | Edits a tournament                                           |
-| `/tournaments/:id`        | TournamentDetailPage | user only   | Details of a tournament to edit                              |
-| `/tournament/:id`         | na                   | user only   | Delete tournament                                            |
-| `/tournament/players`     | PlayersListPage      | user only   | List of players of a tournament                              |
-| `/tournament/players/add` | PlayersListPage      | user only   | Add a player to the tournament                               |
-| `/tournament/players/:id` | PlayersDetailPage    | user only   | Edit player for tournament                                   |
-| `/tournament/players/:id` | PlayersListPage      | user only   | Delete player from tournament                                |
-| `/tournament/tableview`   | TableView            | user only   | Games view and brackets                                      |
-| `/tournament/ranks`       | RanksPage            | user only   | Ranks list                                                   |
-| `/tournament/game`        | GameDetailPage       | user only   | Game details                                                  |
-| `/tournament/game`        | Game                 | user only   |                                                              |
+| `/`                       | SplashScreen         | public      | Redirect to login (anon) or dashboard (user)            |
+| `/auth/signup`            | Signup               | anon only   | Signup form, link to login, navigate to '/' after signup|
+| `/auth/login`             | Login                | anon only   | Login form, link to signup, navigate to '/' after login |
+| `/auth/logout`            | n/a                  | anon only   | Navigate to '/' after logout, expire session            |
+| `/trip/create`            | TripCreate           | user only   | Create a trip                                           |
+| `/trip/edit/:id`            | TripUpdate           | user only   | Update a trip                                         |
+| `/trip/delete/:id`            | n/a                  | user only   | Delete a trip and redirect to '/'                   |
+| `/trip/join/:id      `        | TripJoin             | user only   | Join a trip                                         |
+| `/dashboard/:id  `        | Dashboard            | user only   | Shows trip dashboard with components, if notrip -> '/trip/create'  |
+| `/tournaments/:id`        | TournamentDetail     | user only   | Details of a tournament to edit                         |
+| `/activity/create/:id`        | ActivityCreate       | user only   | Create a activity                                   |
+| `/tournaments/edit/:id`        | ActivityUpdate       | user only   | Update a activity                                  |
+| `/budget/create:id`          | BudgetCreate         | user only   | Create a budget form, navigate to '/'                |
+| `/budget/newExpense/id:`      | NewExpense           | user only   | Add a new expense                                   |
 
 
 ## Components
 
-- LoginPage
+- SplashScreen
 
-- SplashPage
+- Signup
 
-- TournamentListPage
+- Login
 
-- Tournament Cell
+- TripCreate
 
-- TournamentDetailPage
+- TripUpdate
 
-- TableViewPage
+- TripJoin
 
-- PlayersListPage
+- Dashboard
 
-- PlayerDetailPage
+- TournamentDetail
 
-- RanksPage
+- ActivityCreate
 
-- TournamentDetailPageOutput
+- BudgetCreate
 
-- Navbar
+- NewExpense
 
 
   
@@ -104,27 +101,45 @@ Chat:
 ## Services
 
 - Auth Service
+
   - auth.login(user)
   - auth.signup(user)
   - auth.logout()
   - auth.me()
   - auth.getUser() // synchronous
-- Tournament Service
-  - tournament.list()
-  - tournament.detail(id)
-  - tournament.add(id)
-  - tournament.delete(id)
   
-- Player Service 
+- Trip Service
 
-  - player.detail(id)
-  - player.add(id)
-  - player.delete(id)
+  - trip.add(id)
+  - trip.update(id)
+  - trip.join(id)
+  - trip.delete(id)
+  
+- Activities Service
+  
+  - activities.list(id)
+  - activities.add(id)
+  - activities.update(id)
+  - activities.delete()id
+  
+- Budget Service 
 
-- Game Service
+  - budget.detail(id)
+  - budget.add(id)
+  - budget.delete(id)
 
-  - Game.put(id)
+- Country Service
 
+  - country.get(name)
+  
+ - Map Service
+ 
+  - map.post(id)
+  - map.get(id)
+
+- Weather Service
+ 
+  - weather.get(id)
 
 
 <br>
@@ -139,44 +154,52 @@ User model
 
 ```javascript
 {
-  username - String // required
-  email - String // required & unique
-  password - String // required
-  favorites - [ObjectID<Restaurant>]
+  name: String
+  email: String ,// required & unique
+  password: String, // required
+  trips: [ObjectID<Trips>]
 }
 ```
 
-Tournament model
+Trip model
 
 ```javascript
  {
-   name:String,
-   img:String,
-   players: [{type: Schema.Types.ObjectId,ref:'Participant'}],
-   games:[{type: Schema.Types.ObjectId,ref:'Game'}]
+   name: String
+   users: [ObjectID<Users>],
+   date: Date,
+   country: String
+   activities: [{
+    name: String,
+    date: Date,
+    tickets: [String, String, ...]
+    location: String
+   }...]
+   budget: {
+    expectet: {
+     hotel: Number,
+     transport: Number,
+     food: Number,
+     gifts: Number,
+     others: Number,
+    },
+    current: {
+     hotel: Number,
+     transport: Number,
+     food: Number,
+     gifts: Number,
+     others: Number,
+    }
+   },
+   countryApi: {
+    name: String,
+    emergencyNum: String,
+    population: String,
+    language: String,
+    history: String,
+    ...
+   }
  }
-```
-
-Player model
-
-```javascript
-{
-  name: String,
-  img: String,
-  score: []
-}
-```
-
-Game model
-
-```javascript
-{
-  player1: [{type: Schema.Types.ObjectId,ref:'Participant'}],
-  player2: [{type: Schema.Types.ObjectId,ref:'Player'}],
-  player2: [{type: Schema.Types.ObjectId,ref:'Player'}],
-  winner: String,
-  img :String
-}
 ```
 
 
@@ -187,26 +210,18 @@ Game model
 
 | HTTP Method | URL                         | Request Body                 | Success status | Error Status | Description                                                  |
 | ----------- | --------------------------- | ---------------------------- | -------------- | ------------ | ------------------------------------------------------------ |
-| GET         | /auth/profile               | Saved session                | 200            | 404          | Check if user is logged in and return profile page           |
-| POST        | /auth/signup                | {name, email, password}      | 201            | 404          | Checks if fields not empty (422) and user not exists (409), then create user with encrypted password, and store user in session |
-| POST        | /auth/login                 | {username, password}         | 200            | 401          | Checks if fields not empty (422), if user exists (404), and if password matches (404), then stores user in session |
+| GET         | /dashboard                  | Saved session                | 200            | 404          | Check if user is logged in and return dashboard page           |
+| POST        | /auth/signup                | {email, password}      | 201            | 404          | Checks if fields not empty (422) and user not exists (409), then create user with encrypted password, and store user in session |
+| POST        | /auth/login                 | {email, password}         | 200            | 401          | Checks if fields not empty (422), if user exists (404), and if password matches (404), then stores user in session |
 | POST        | /auth/logout                | (empty)                      | 204            | 400          | Logs out the user                                            |
-| GET         | /tournaments                |                              |                | 400          | Show all tournaments                                         |
-| GET         | /tournaments/:id            | {id}                         |                |              | Show specific tournament                                     |
-| POST        | /tournaments/add-tournament | {}                           | 201            | 400          | Create and save a new tournament                             |
-| PUT         | /tournaments/edit/:id       | {name,img,players}           | 200            | 400          | edit tournament                                              |
-| DELETE      | /tournaments/delete/:id     | {id}                         | 201            | 400          | delete tournament                                            |
-| GET         | /players                    |                              |                | 400          | show players                                                 |
-| GET         | /players/:id                | {id}                         |                |              | show specific player                                         |
-| POST        | /players/add-player         | {name,img,tournamentId}      | 200            | 404          | add player                                                   |
-| PUT         | /players/edit/:id           | {name,img}                   | 201            | 400          | edit player                                                  |
-| DELETE      | /players/delete/:id         | {id}                         | 200            | 400          | delete player                                                |
-| GET         | /games                      | {}                           | 201            | 400          | show games                                                   |
-| GET         | /games/:id                  | {id,tournamentId}            |                |              | show specific game                                           |
-| POST        | /games/add-game             | {player1,player2,winner,img} |                |              | add game                                                     |
-| POST        | /games/add-all-games        |                              |                |              | add all games from a tournament. Gets a list of players and populates them via algorithm. |
-| PUT         | /games/edit/:id             | {winner,score}               |                |              | edit game                                                    |
-|             |                             |                              |                |              |                                                              |
+| GET         | /dashboard/:id              | {id, Trip}                   |                |              | Show specific trip                                     |
+| POST        | /trip/create                | {}                           | 201            | 400          | Create and save a new trip                    |
+| PUT         | /trip/edit/:id              | {name, date, country}        | 200            | 400          | edit tournament                                              |
+| DELETE      | /tip/delete/:id             | {id}                         | 201            | 400          | delete trip                                            |
+| PUT         | /budget/newExpense          | {id}                         | 200            | 400          | add expense                                                  |
+| GET         | /activity/create            | {id}                         | 200            | 400          | add activity player                                         |
+| PUT         | /activity/edit/:id           |{name,location, date, tickets} | 201          | 400          | edit activity                                                  |
+| DELETE      | /activity/delete/:id        | {id}                         | 200            | 400          | delete activity                                                |
 
 
 <br>
@@ -216,8 +231,7 @@ Game model
 
 ### Trello/Kanban
 
-[Link to your trello board](https://trello.com/b/PBqtkUFX/curasan) 
-or picture of your physical board
+[Link to your trello board](https://trello.com/b/TBI9P7xP/final-project) 
 
 ### Git
 
