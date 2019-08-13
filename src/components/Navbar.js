@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import withAuth from './withAuth';
 
 
@@ -12,12 +11,7 @@ class Navbar extends Component {
             <p>username: {this.props.user.username}</p>
             <button onClick={this.props.logout}>Logout</button>
           </>
-        ) : (
-          <>
-            <Link to='/login'>Login</Link>
-            <Link to='/signup'>Signup</Link>
-          </>
-        )}   
+        ) : null }   
       </div>
     )
   }

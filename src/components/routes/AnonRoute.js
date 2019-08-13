@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Route, Redirect } from 'react-router-dom'
 
-import withAuth from './withAuth';
+import withAuth from '../withAuth';
 
 function AnonRoute(props) {
   const { isLoggedIn, component: Component, ...rest } = props;
