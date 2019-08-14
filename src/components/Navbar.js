@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
+
 import withAuth from './withAuth';
+
+import NavbarButton from './navbar-button'
 
 
 class Navbar extends Component {
@@ -29,10 +33,17 @@ class Navbar extends Component {
           <nav  className={classMenu} onClick={this.handleClick}>
             <div className='image-container'>
               <img src={this.props.user.image} alt="hola"/>
+              {this.state.menu}
+              <section id='profile-edit'>
+                <Link to='/'><p>edit profile</p></Link>
+                <h3>Welcome {this.props.user.email}</h3>
+              </section>
             </div>
             <section className='nav-buttons'>
-              <h1>Welcome {this.props.user.email}</h1>
-              <button onClick={this.props.logout}>Logout</button>
+              <NavbarButton route='/' title='My Tickets'/>
+              <NavbarButton route='/' title='Budget'/>
+              <NavbarButton route='/' title='Information'/>
+              <button className='logout-button' onClick={this.props.logout}>Logout</button>
             </section>
             <section>
               <h1>Select your trip</h1>
