@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import withAuth from '../components/withAuth';
 
-class Private extends Component {
+class Dashboard extends Component {
   render() {
     
     return (
@@ -12,4 +12,4 @@ class Private extends Component {
   }
 }
 
-export default withAuth(Private);
+export default withAuth(Dashboard);
