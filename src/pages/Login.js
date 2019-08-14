@@ -29,17 +29,16 @@ class Login extends Component {
   }
 
   render() {
-    const { email, password } = this.state;
     return (
       <section className="main-splash">
         <Form autoComplete="off" >
           <section>
             <Field type='email' name='email' placeholder='email' />
-            {/* <input id='email' type='email' name='email' placeholder='email' value={email} onChange={this.handleChange} autoComplete="email" /> */}
+            {this.props.touched.email && this.props.errors.email && <p className='form-error'>{this.props.errors.email}</p>}
           </section>
           <section>
             <Field type='password'name='password' placeholder='password' />
-            {/* <input id='password' type='password' name='password' placeholder='password' value={password} onChange={this.handleChange} autoComplete="current-password"/> */}
+          {this.props.touched.password && this.props.errors.password && <p className='form-error'>{this.props.errors.password}</p>}
           </section>
           <section>
             <button className='submit-button' type='submit'>Login</button>
@@ -80,6 +79,5 @@ export default withAuth(withFormik({
       .required('email is required'),
     password: Yup.string()
       .required('password is required')
-      .min(8),
   }),
 })(Login));
