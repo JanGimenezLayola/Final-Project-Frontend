@@ -7,10 +7,10 @@ class Navbar extends Component {
     return (
       <div>
         {this.props.isLoggedIn ? (
-          <>
+          <nav>
             <p>username: {this.props.user.username}</p>
             <button onClick={this.props.logout}>Logout</button>
-          </>
+          </nav>
         ) : null }   
       </div>
     )
