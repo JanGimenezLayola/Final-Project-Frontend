@@ -9,18 +9,15 @@ class AuthService {
   }
 
   signup (user) {
-    const { email, password, passwordRepeat } = user;
-    if(password === passwordRepeat) {
+    console.log(user, 'hello')
+    const { email, password } = user;
       return this.auth.post('/auth/signup', { email, password })
       .then(({ data }) => data);
-    } else {
-      console.log('the password doesnt match');
-      
-    }
   }
 
   login (user) {
     const { email, password } = user;
+    console.log(user)
     return this.auth.post('/auth/login', { email, password })
       .then(({ data }) => data);
   }
