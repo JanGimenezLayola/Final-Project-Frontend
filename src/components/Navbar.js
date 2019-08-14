@@ -27,10 +27,15 @@ class Navbar extends Component {
       <>
         {this.props.isLoggedIn ? (
           <nav  className={classMenu} onClick={this.handleClick}>
-            <img src={this.props.user.image} alt="hola"/>
-            <section>
+            <div className='image-container'>
+              <img src={this.props.user.image} alt="hola"/>
+            </div>
+            <section className='nav-buttons'>
               <h1>Welcome {this.props.user.email}</h1>
               <button onClick={this.props.logout}>Logout</button>
+            </section>
+            <section>
+              <h1>Select your trip</h1>
             </section>
           </nav>
         ) : null }   
