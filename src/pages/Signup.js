@@ -46,6 +46,7 @@ class Signup extends Component {
           <Field type='password'name='password' placeholder='password' />
           {this.props.touched.password && this.props.errors.password && <p>{this.props.errors.password}</p>}
           <Field type='password' name='passwordRepeat' placeholder='repeat password' />
+          {/* {this.props.touched.passwordRepeat && this.props.errors.passwordRepeat && <p>{this.props.errors.passwordRepeat}</p>} */}
           {this.props.touched.passwordRepeat && this.props.errors.passwordRepeat && <p>{this.props.errors.passwordRepeat}</p>}
           {this.props.errors.passwordMatch && <p>{this.props.errors.passwordMatch}</p>}
           <button className='submit-button' type='submit'>Signup</button>
@@ -97,7 +98,15 @@ export default withAuth(withFormik({
     password: Yup.string()
       .required('password is required')
       .min(8),
+    // passwordRepeat: Yup.string()
+    //   .required('password is required'),
     passwordRepeat: Yup.string()
-      .required('password is required')
+    .required()
+    .label('Confirm password')
+    .test('passwords-match', "password doesn't match", function(value) {
+      console.log(this.parent.password)
+      console.log(value)
+      return this.parent.password === value;
+    }),
     })
   })(Signup));
