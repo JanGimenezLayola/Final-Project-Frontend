@@ -13,6 +13,7 @@ class AuthProvider extends Component {
   }
 
   userSignUp = (user) => {
+    console.log(user)
     return authService.signup(user)
     .then((user) => {
       this.setState({

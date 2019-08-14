@@ -11,9 +11,9 @@ class Login extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    const { username, password } = this.state
+    const { email, password } = this.state
 
-    this.props.login({ username, password })
+    this.props.login({ email, password })
     .then( (user) => {
       console.log(user)
     })
