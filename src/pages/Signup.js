@@ -41,21 +41,27 @@ class Signup extends Component {
     return (
       <section className="main-splash">
         <Form autoComplete="off">
-          <Field type='email' name='email' placeholder='email' />
-          {this.props.touched.email && this.props.errors.email && <p>{this.props.errors.email}</p>}
-          <Field type='password'name='password' placeholder='password' />
-          {this.props.touched.password && this.props.errors.password && <p>{this.props.errors.password}</p>}
-          <Field type='password' name='passwordRepeat' placeholder='repeat password' />
-          {/* {this.props.touched.passwordRepeat && this.props.errors.passwordRepeat && <p>{this.props.errors.passwordRepeat}</p>} */}
-          {this.props.touched.passwordRepeat && this.props.errors.passwordRepeat && <p>{this.props.errors.passwordRepeat}</p>}
-          {this.props.errors.passwordMatch && <p>{this.props.errors.passwordMatch}</p>}
-          <button className='submit-button' type='submit'>Signup</button>
+          <section>
+            <Field type='email' name='email' placeholder='email' />
+            {this.props.touched.email && this.props.errors.email && <p className='form-error'>{this.props.errors.email}</p>}
+          </section>
+          <section>
+            <Field type='password'name='password' placeholder='password' />
+            {this.props.touched.password && this.props.errors.password && <p className='form-error'>{this.props.errors.password}</p>}
+          </section>
+          <section>
+            <Field type='password' name='passwordRepeat' placeholder='repeat password' />
+            {/* {this.props.touched.passwordRepeat && this.props.errors.passwordRepeat && <p>{this.props.errors.passwordRepeat}</p>} */}
+            {this.props.touched.passwordRepeat && this.props.errors.passwordRepeat && <p className='form-error'>{this.props.errors.passwordRepeat}</p>}
+            {this.props.errors.passwordMatch && <p>{this.props.errors.passwordMatch}</p>}
+          </section>
+          <section>
+            <button className='submit-button' type='submit'>Signup</button>
+            <p>Already have account? 
+              <Link to={'/'}> Login</Link>
+            </p>
+          </section>
         </Form>
-
-        <p>Already have account? 
-          <Link to={'/'}> Login</Link>
-        </p>
-
       </section>
     )
   }
