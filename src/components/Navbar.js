@@ -36,10 +36,10 @@ class Navbar extends Component {
               {this.state.menu}
               <section id='profile-edit'>
                 <Link to='/'><p>edit profile</p></Link>
-                <h3>Welcome {this.props.user.email}</h3>
               </section>
             </div>
-            <section className='nav-buttons'>
+            <section className='nav-buttons buttons-links'>
+              <h3>Welcome {this.props.user.email}</h3>
               <NavbarButton route='/' title='My Tickets'/>
               <NavbarButton route='/' title='Budget'/>
               <NavbarButton route='/' title='Information'/>

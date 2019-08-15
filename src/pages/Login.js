@@ -65,6 +65,7 @@ export default withAuth(withFormik({
     const email = values.email;
     const password = values.password;
     bag.props.login({ email, password })
+    // if(res.status(200))
     .then( (user) => {
       this.setState({
           email: '',
