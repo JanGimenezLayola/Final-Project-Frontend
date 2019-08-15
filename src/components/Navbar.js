@@ -46,7 +46,7 @@ class Navbar extends Component {
               <button className='logout-button' onClick={this.props.logout}>Logout</button>
             </section>
             <section>
-              <h1>Select your trip</h1>
+              <p className='country-selector'>Select your trip</p>
             </section>
           </nav>
         ) : null }   

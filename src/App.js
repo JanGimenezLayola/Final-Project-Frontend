@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound'
+import CreateTrip from './pages/CreateTrip'
 
 import Navbar from './components/Navbar';
 import PrivateRoute from './components/routes/PrivateRoute';
@@ -26,6 +27,7 @@ class App extends Component {
               <AnonRoute exact path="/" component={Login} />
               <AnonRoute exact path="/signup" component={Signup} />
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              <PrivateRoute exact path="/trip/create" component={CreateTrip} />              
               <Route component={NotFound}/>
             </Switch>
           </div>

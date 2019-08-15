@@ -229,11 +229,23 @@ nav.navbar-opened {
   display: flex;
   align-content: center;
   flex-direction: column;
+
   section {
     display: flex;
     flex-direction: column;
     align-content: center;
     justify-content: center;
+    width: 100%;
+    .country-selector {
+      background-color: rgba(102, 102, 102, 0.589);
+      color: white;
+      width: 100%;
+      height: 50px;
+      text-align: center;
+      font-size: 25px;
+      font-family: "Roboto Condensed", sans-serif;
+      padding-top: 10px;
+    }
   }
   section.nav-buttons {
     display: flex;
@@ -246,24 +258,24 @@ nav.navbar-opened {
   .navbar-button {
     height: 36px;
     background-color: rgba(244, 244, 244, 0.55);
-    width: 100%;
+    width: 50%;
     border-radius: 12px;
     text-align: center;
     font-size: 22px;
     font-family: "Roboto Condensed", sans-serif;
     border: none;
-    margin: 20px 0;
+    margin: 20px 25% 0 25%;
   }
   .logout-button {
     height: 36px;
     background-color: rgba(95, 5, 5, 0.452);
-    width: 100%;
+    width: 50%;
     border-radius: 12px;
     text-align: center;
     font-size: 22px;
     font-family: "Roboto Condensed", sans-serif;
     border: none;
-    margin: 20px 0;
+    margin: 20px 25% 0 25%;
 
   }
 }
@@ -280,7 +292,7 @@ nav.navbar-closed {
     position: absolute;
     z-index: -1;
     width: 100%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url(/static/media/planning-img.e3ae1e28.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url(./media/images/planning-img.jpg);
     background-size: 350vw;
     background-position-x: 60%;
     top: 0;
@@ -322,3 +334,23 @@ nav.navbar-closed {
     }
   }
 }
+
+.create-form-main {
+  width: 400%;
+  .create-form-container {
+    display: flex;
+    flex-direction: row;
+    .create-form-div {
+      width: 100%
+    }
+    .page1-opened {
+      
+    }
+    .page-closed {
+      display: none;
+    }
+
+  }
+}
+
+

@@ -12,22 +12,6 @@ class Login extends Component {
     password: '',
   }
 
-  // handleFormSubmit = (event) => {
-  //   event.preventDefault();
-  //   const { email, password } = this.state
-
-  //   this.props.login({ email, password })
-  //   .then( (user) => {
-  //     console.log(user)
-  //   })
-  //   .catch( error => console.log(error) )
-  // }
-
-  handleChange = (event) => {  
-    const {name, value} = event.target;
-    this.setState({[name]: value});
-  }
-
   render() {
     return (
       <section className="main-splash">
@@ -47,8 +31,6 @@ class Login extends Component {
             </p>
           </section>
         </Form>
-
-        
       </section>
     )
   }
@@ -65,7 +47,7 @@ export default withAuth(withFormik({
     const email = values.email;
     const password = values.password;
     bag.props.login({ email, password })
-    // if(res.status(200))
+    // if(re(200))
     .then( (user) => {
       this.setState({
           email: '',
