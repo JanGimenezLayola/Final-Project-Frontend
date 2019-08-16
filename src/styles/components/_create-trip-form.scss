@@ -1,0 +1,17 @@
+.create-form-main {
+  width: 400%;
+  .create-form-container {
+    display: flex;
+    flex-direction: row;
+    .create-form-div {
+      width: 100%
+    }
+    .page1-opened {
+      
+    }
+    .page-closed {
+      display: none;
+    }
+
+  }
+}

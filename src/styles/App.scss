@@ -1,0 +1,207 @@
+@import './components/_create-trip-form.scss';
+@import './components/_forms';
+
+@import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed&display=swap');
+
+
+/* ---- sizes ---- */
+
+$tablet: 768px;
+$desktop: 1200px;
+
+
+/* ---- reset ---- */
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4, p {
+  margin: 0;
+  padding: 0;
+}
+
+.h1 {
+  margin: 50px
+}
+
+
+
+
+
+
+#profile-edit {
+  position: absolute;
+  margin-top: 100px;
+  p {
+    color: white;
+    text-decoration: none;
+    
+    text-align: center
+  }
+  h3 {
+    margin-top: 30px;
+    background-color: rgba(244, 244, 244, 0.55);
+    border-radius: 12px;
+    text-align: center;
+    font-size: 30px;
+    font-family: "Roboto Condensed", sans-serif;
+    border: none;
+  }
+}
+
+nav {
+  margin: 0;
+  img {
+    width: 100px;
+    position: fixed;
+    border-radius: 50%;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+  }
+  .image-container {
+    position: fixed;
+    margin-top: 50px;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+nav.navbar-opened {
+  mix-blend-mode: normal;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  display: block;
+  z-index: -1;
+  width: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url(../media/images/planning-img.jpg);
+  background-size: 350vw;
+  background-position-x: 60%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+
+  section {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    .country-selector {
+      background-color: rgba(102, 102, 102, 0.589);
+      color: white;
+      width: 100%;
+      height: 50px;
+      text-align: center;
+      font-size: 25px;
+      font-family: "Roboto Condensed", sans-serif;
+      padding-top: 10px;
+    }
+  }
+  section.nav-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  section.buttons-links {
+    margin-top: 50%;
+  }
+  .navbar-button {
+    height: 36px;
+    background-color: rgba(244, 244, 244, 0.55);
+    width: 50%;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 22px;
+    font-family: "Roboto Condensed", sans-serif;
+    border: none;
+    margin: 20px 25% 0 25%;
+  }
+  .logout-button {
+    height: 36px;
+    background-color: rgba(95, 5, 5, 0.452);
+    width: 50%;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 22px;
+    font-family: "Roboto Condensed", sans-serif;
+    border: none;
+    margin: 20px 25% 0 25%;
+
+  }
+}
+
+nav.navbar-closed {
+  mix-blend-mode: normal;
+  height: 100px;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+    display: block;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url(../media/images/planning-img.jpg);
+    background-size: 350vw;
+    background-position-x: 60%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+  section {
+    display: none;
+  }
+}
+
+@media screen and (min-width: $tablet) {
+
+  nav {
+    img {
+      width: 125px;
+    }
+    .image-container {
+      margin-top: 50px;
+      width: 100px;
+      height: 125px;
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  nav.navbar-closed {
+    height: 125px;
+
+  }
+
+  nav.navbar-opened {
+    #profile-edit {
+      position: absolute;
+      margin-top: 130px;
+    }
+  }
+}
+
+
+

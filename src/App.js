@@ -13,10 +13,12 @@ import PrivateRoute from './components/routes/PrivateRoute';
 import AuthProvider from './context/auth-context'
 import AnonRoute from './components/routes/AnonRoute';
 
-import './App.scss';
+import './styles/App.scss';
 
 
 class App extends Component {
+
+
   render() {
     return (
       <Router>

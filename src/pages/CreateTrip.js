@@ -20,11 +20,25 @@ class CreateTrip extends Component {
   handle1 = () => {
     this.setState({ page1: false, page2: true})
   }
+
+  handleBackTo1 = () => {
+    this.setState({ page2: false, page1: true})
+  }
+
   handle2 = () => {
     this.setState({ page2: false, page3: true})
   }
+
+  handleBackTo2 = () => {
+    this.setState({ page3: false, pag2: true})
+  }
+
   handle3 = () => {
     this.setState({ page3: false, page4: true})
+  }
+
+  handleBackTo3 = () => {
+    this.setState({ page4: false, page3: true})
   }
 
   render() {
@@ -34,39 +48,39 @@ class CreateTrip extends Component {
     const open3 = page3 ? 'page3-opened' : 'page-closed';
     const open4 = page4 ? 'page4-opened' : 'page-closed';
     return (
-    <div  className='create-form-main'>
-      <Form  className='create-form-container'autoComplete="off" >
-        <div className= {`create-form-div ${open1}`}>
-          <button onClick={this.props.history.goBack}>Back</button>
+    <section  className='create-form-main main-splash'>
+      <Form id='create-form' className='create-form-container'autoComplete="off" >
+        <div className= {`create-form-div ${open1} form-sections`}>
+          <button  type='button' onClick={this.props.history.goBack}>Back</button>
           <h2>What's the trip name?</h2>
           <Field type='string' name='name' placeholder='Trip name' />
-          <button onClick={this.handle1}>Next</button>
+          <button type='button' onClick={this.handle1}>Next</button>
         </div>
-        <div className={`create-form-div ${open2}`}>
-          <button onClick={this.props.history.goBack}>Back</button>
+        <div className={`create-form-div ${open2} form-sections`}>
+          <button type='button' onClick={this.handleBackTo1}>Back</button>
           <h2>Where are you going?</h2>
           <Field component='select' name='country' placeholder=''>
             {countryArray.map((country) => {
               return (<option value={country}>{country}</option>)
             })}
           </Field> 
-          <button onClick={this.handle2}>Next</button>
+          <button type='button' onClick={this.handle2}>Next</button>
         </div>
-        <div className={`create-form-div ${open3}`}>
-          <button onClick={this.props.history.goBack}>Back</button>
+        <div className={`create-form-div ${open3} form-sections`}>
+          <button type='button' onClick={this.handleBackTo2}>Back</button>
           <h2>My adventure start at...</h2>
           <Field type='date' name='date' />
-          <button onClick={this.handle3}>Next</button>
+          <button  type='button' onClick={this.handle3}>Next</button>
         </div>
-        <div className={`create-form-div ${open4}`}>
-          <button onClick={this.props.history.goBack}>Back</button>
+        <div className={`create-form-div ${open4} form-sections`}>
+          <button type='button' onClick={this.handleBackTo3}>Back</button>
           <h2>My trip colleagues?</h2>
-          <Field type='string' name='users' placeholder='' />
+          {/* <Field type='string' name='users' placeholder='' /> */}
           <button className='submit-button' type='submit'>Login</button>
         </div>
       </Form>
       {/* {redirect ? <Redirect to='/'/> : null} */}
-    </div>
+    </section>
     )
   }
 }
@@ -77,7 +91,6 @@ export default withAuth(withFormik({
       name: name || '',
       country: country || '',
       date: date || '',
-      users: users || '',
     })
   },
   
@@ -85,9 +98,9 @@ export default withAuth(withFormik({
     const name = values.name;
     const country = values.country;
     const date = values.date;
-    const users = values.users;
-    tripsService.add({ name, country, date, users })
+    tripsService.add({ name, country, date })
     .then( (response) => {
+      console.log(response, ' --- frontend response')
       return response;
     })
     .catch( error => console.log(error) )
