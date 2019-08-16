@@ -61,6 +61,10 @@ h1, h2, h3, h4, p {
 
 nav {
   margin: 0;
+  .click-navbar {
+    height: 100px;
+    width: 100%;
+  }
   img {
     width: 100px;
     position: fixed;
@@ -104,6 +108,9 @@ nav.navbar-opened {
     align-content: center;
     justify-content: center;
     width: 100%;
+    .selector-closed {
+      display: none;
+    }
     .country-selector {
       background-color: rgba(102, 102, 102, 0.589);
       color: white;
