@@ -25,8 +25,14 @@ class TripsService {
   //     .then(response => response.data);
   // }
 
-  view () {
-    return this.trips.get('/view')
+  list () {    
+    return this.trips.get(`/view`)
+      .then(response => response.data);
+  }
+
+
+  view (id) {    
+    return this.trips.get(`/view/${id}`)
       .then(response => response.data);
   }
 }

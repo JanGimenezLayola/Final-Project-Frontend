@@ -41,7 +41,7 @@ class Navbar extends Component {
   }
 
   componentDidMount() {
-    tripsService.view()
+    tripsService.list()
     .then( (user) => {
       console.log(user, ' --- frontend trips user')
       return this.setState({
@@ -76,7 +76,7 @@ class Navbar extends Component {
             <section>
               <section className={classSelector}>
                 {this.state.userWithTrips.trips ? this.state.userWithTrips.trips.map((trip)=> {
-                  return <p>{trip.name}</p>
+                  return <a href={`/dashboard/${trip._id}`}>{trip.name}</a>
                 }) : null}
               </section>
               <p onClick={this.handleSelect} className='country-selector'>Select your trip</p>
