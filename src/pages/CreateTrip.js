@@ -6,7 +6,7 @@ import tripsService from '../services/trips-service';
 // import Redirect from 'react-router-dom'
 
 import { withFormik, Form, Field } from 'formik';
-// import * as Yup from 'yup'
+import * as Yup from 'yup'
 
 class CreateTrip extends Component {
   state = {
@@ -14,7 +14,6 @@ class CreateTrip extends Component {
     page1: true,
     page2: false, 
     page3: false,
-    page4: false,
   }
 
   handle1 = () => {
@@ -30,31 +29,26 @@ class CreateTrip extends Component {
   }
 
   handleBackTo2 = () => {
-    this.setState({ page3: false, pag2: true})
+    this.setState({ page3: false, page2: true})
   }
 
-  handle3 = () => {
-    this.setState({ page3: false, page4: true})
-  }
 
-  handleBackTo3 = () => {
-    this.setState({ page4: false, page3: true})
-  }
 
   render() {
-    const { countryArray, page1, page2, page3, page4 } = this.state;
+    const { countryArray, page1, page2, page3 } = this.state;
     const open1 = page1 ? 'page1-opened' : 'page-closed';
     const open2 = page2 ? 'page2-opened' : 'page-closed';
     const open3 = page3 ? 'page3-opened' : 'page-closed';
-    const open4 = page4 ? 'page4-opened' : 'page-closed';
     return (
     <section  className='create-form-main main-splash'>
       <Form id='create-form' className='create-form-container'autoComplete="off" >
         <div className= {`create-form-div ${open1} form-sections`}>
           <button  type='button' onClick={this.props.history.goBack}>Back</button>
           <h2>What's the trip name?</h2>
+          {this.props.errors.name && <p className='form-error'>{this.props.errors.name}</p>}
           <Field type='string' name='name' placeholder='Trip name' />
-          <button type='button' onClick={this.handle1}>Next</button>
+          {this.props.errors.name ? null : <button type='button' onClick={this.handle1}>Next</button>}
+          {console.log(this.props.errors.name)}
         </div>
         <div className={`create-form-div ${open2} form-sections`}>
           <button type='button' onClick={this.handleBackTo1}>Back</button>
@@ -70,13 +64,7 @@ class CreateTrip extends Component {
           <button type='button' onClick={this.handleBackTo2}>Back</button>
           <h2>My adventure start at...</h2>
           <Field type='date' name='date' />
-          <button  type='button' onClick={this.handle3}>Next</button>
-        </div>
-        <div className={`create-form-div ${open4} form-sections`}>
-          <button type='button' onClick={this.handleBackTo3}>Back</button>
-          <h2>My trip colleagues?</h2>
-          {/* <Field type='string' name='users' placeholder='' /> */}
-          <button className='submit-button' type='submit'>Login</button>
+          <button className='submit-button' type='submit'>Create trip</button>
         </div>
       </Form>
       {/* {redirect ? <Redirect to='/'/> : null} */}
@@ -104,5 +92,14 @@ export default withAuth(withFormik({
       return response;
     })
     .catch( error => console.log(error) )
-  }
+  },
+
+  validationSchema: Yup.object().shape({
+    name: Yup.string()
+      .required('the trip name is required'),
+    country: Yup.string()
+      .required('country is required'),
+    date: Yup.date()
+    .required('the date is required')
+  }),
 })(CreateTrip));
