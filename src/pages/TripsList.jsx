@@ -24,6 +24,17 @@ class TripsList extends Component {
     .catch( error => console.log(error) )
   }
 
+  // handleDelete(id) {
+  //   console.log('im handleDelete');
+  //   tripsService.delete(id)
+  //   .then( (response) => {
+  //     console.log('----frontend response', response);
+      
+  //     return response;
+  //   })
+  //   .catch( error => console.log(error) )
+  // }
+
 
   
   render() {   
@@ -40,8 +51,8 @@ class TripsList extends Component {
                         <p>{trip.date}</p>
                       </a>
                       <section className='card-buttons'>
-                        <button>Edit</button>
-                        <button>Delete</button>
+                        <button >Edit</button>
+                        {/* <button onClick={this.handleDelete(trip._id)}>Delete</button> */}
                       </section>
                     </section>
                   ) 
