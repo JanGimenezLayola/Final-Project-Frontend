@@ -1,5 +1,9 @@
 @import './components/_create-trip-form.scss';
 @import './components/_forms';
+@import './components/dashboard';
+@import './components/create-trip-form';
+@import './components/popup';
+@import './components/_create-activity.scss';
 
 @import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed&display=swap');
 
@@ -62,18 +66,19 @@ h1, h2, h3, h4, p {
 nav {
   margin: 0;
   .click-navbar {
-    height: 100px;
+    height: 70px;
     width: 100%;
+    position: absolute;
   }
   img {
     width: 100px;
-    position: fixed;
+    position: relative;
     border-radius: 50%;
     border: 5px solid rgba(255, 255, 255, 0.3);
   }
   .image-container {
-    position: fixed;
-    margin-top: 50px;
+    position: relative;
+    margin-top: 62px;
     width: 100px;
     height: 100px;
     display: flex;
@@ -157,7 +162,7 @@ nav.navbar-opened {
 
 nav.navbar-closed {
   mix-blend-mode: normal;
-  height: 100px;
+  height: 70px;
   background-size: cover;
   display: flex;
   flex-direction: column;
