@@ -43,7 +43,6 @@ class Navbar extends Component {
   componentDidMount() {
     tripsService.list()
     .then( (user) => {
-      console.log(user, ' --- frontend trips user')
       return this.setState({
         userWithTrips: user,
       });
@@ -59,19 +58,20 @@ class Navbar extends Component {
         {this.props.isLoggedIn ? (
           <nav  className={classMenu}>
             <div className='click-navbar'onClick={this.handleClick}></div>
-            <div className='image-container'>
-              <img src={this.props.user.image} alt="hola"/>
-              {this.state.menu}
-              <section id='profile-edit'>
-                <Link to='/'><p>edit profile</p></Link>
+            <section className='img-section'>
+              <div className='image-container'>
+                <img src={this.props.user.image} alt="hola"/>
+                {this.state.menu}
+                <section id='profile-edit'>
+                  <Link to='/'><p>edit profile</p></Link>
+                </section>
+              </div>
+              <section className='nav-buttons buttons-links'>
+                <NavbarButton route='/' title='My Tickets'/>
+                <NavbarButton route='/' title='Budget'/>
+                <NavbarButton route='/' title='Information'/>
+                <button className='logout-button' onClick={this.props.logout}>Logout</button>
               </section>
-            </div>
-            <section className='nav-buttons buttons-links'>
-              <h3>Welcome {this.props.user.email}</h3>
-              <NavbarButton route='/' title='My Tickets'/>
-              <NavbarButton route='/' title='Budget'/>
-              <NavbarButton route='/' title='Information'/>
-              <button className='logout-button' onClick={this.props.logout}>Logout</button>
             </section>
             <section>
               <section className={classSelector}>

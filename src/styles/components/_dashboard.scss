@@ -1,0 +1,76 @@
+.dashboard-container {
+  margin-top: 130px;
+  .trip-name {
+    text-align: center;
+    font-size: 30px;
+    font-family: "Roboto Condensed", sans-serif;
+    margin: 10px 5vw 10px 5vw;
+  }
+  #button-create {
+    text-decoration: none;
+    p {
+      text-align: center;
+      color: black;
+      width: 100%;
+      font-size: 22px;
+      font-family: "Roboto Condensed", sans-serif;
+    }
+  }
+  .card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(139, 139, 139, 0.44);
+    margin: 15px 5vw;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    a {
+      text-decoration: none;
+      h1 {
+        font-size: 30px;
+        text-transform: uppercase;
+        text-align: left;
+      }
+      h3, p {
+        color: rgb(77, 77, 77);
+        font-weight: 200;
+        text-align: left;
+      }
+    }
+    .card-buttons {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+@media screen and (min-width: $desktop) {
+  .container {
+    margin-top: 37px;
+    margin-left: 21.5vw;
+    .dashboard-container {
+      margin: 0;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      .card {
+        display: flex;
+        flex-direction: row;
+        justify-content: baseline;
+        align-items: center;
+        background-color: rgba(139, 139, 139, 0.44);
+        margin: 11px 17px 11px 0;
+        border-radius: 12px;
+        padding: 15px;
+        text-align: center;
+        width: 48%;
+      }
+      #button-create {
+        width: 100%;
+      }
+    }
+  }
+}
