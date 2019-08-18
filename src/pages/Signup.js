@@ -41,21 +41,21 @@ class Signup extends Component {
     return (
       <section className="main-splash">
         <Form autoComplete="off">
-          <section>
+          <section className='form-sections'>
             <Field type='email' name='email' placeholder='email' />
             {this.props.touched.email && this.props.errors.email && <p className='form-error'>{this.props.errors.email}</p>}
           </section>
-          <section>
+          <section className='form-sections'>
             <Field type='password'name='password' placeholder='password' />
             {this.props.touched.password && this.props.errors.password && <p className='form-error'>{this.props.errors.password}</p>}
           </section>
-          <section>
+          <section className='form-sections'>
             <Field type='password' name='passwordRepeat' placeholder='repeat password' />
             {/* {this.props.touched.passwordRepeat && this.props.errors.passwordRepeat && <p>{this.props.errors.passwordRepeat}</p>} */}
             {this.props.touched.passwordRepeat && this.props.errors.passwordRepeat && <p className='form-error'>{this.props.errors.passwordRepeat}</p>}
             {this.props.errors.passwordMatch && <p>{this.props.errors.passwordMatch}</p>}
           </section>
-          <section>
+          <section className='form-sections'>
             <button className='submit-button' type='submit'>Signup</button>
             <p>Already have account? 
               <Link to={'/'}> Login</Link>
