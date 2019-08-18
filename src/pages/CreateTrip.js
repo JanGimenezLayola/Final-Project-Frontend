@@ -3,6 +3,8 @@ import withAuth from '../components/withAuth';
 
 import tripsService from '../services/trips-service';
 
+import {BrowserRouter as Redirect} from 'react-router-dom';
+
 // import Redirect from 'react-router-dom'
 
 import { withFormik, Form, Field } from 'formik';
@@ -14,6 +16,7 @@ class CreateTrip extends Component {
     page1: true,
     page2: false, 
     page3: false,
+    redirect: false,
   }
 
   handle1 = () => {
@@ -45,10 +48,12 @@ class CreateTrip extends Component {
         <div className= {`create-form-div ${open1} form-sections`}>
           <button  type='button' onClick={this.props.history.goBack}>Back</button>
           <h2>What's the trip name?</h2>
-          {this.props.errors.name && <p className='form-error'>{this.props.errors.name}</p>}
           <Field type='string' name='name' placeholder='Trip name' />
-          {this.props.errors.name ? null : <button type='button' onClick={this.handle1}>Next</button>}
+          {this.props.errors.name && <p className='form-error'>{this.props.errors.name}</p>}
+          {this.props.touched.name && this.props.errors.name === undefined ? <button type='button' onClick={this.handle1}>Next</button> : null}
           {console.log(this.props.errors.name)}
+          {console.log(this.props.touched.name)}
+          
         </div>
         <div className={`create-form-div ${open2} form-sections`}>
           <button type='button' onClick={this.handleBackTo1}>Back</button>
@@ -67,7 +72,7 @@ class CreateTrip extends Component {
           <button className='submit-button' type='submit'>Create trip</button>
         </div>
       </Form>
-      {/* {redirect ? <Redirect to='/'/> : null} */}
+      {this.state.redirect ? <Redirect to='/'/> : null}
     </section>
     )
   }
@@ -87,8 +92,12 @@ export default withAuth(withFormik({
     const country = values.country;
     const date = values.date;
     tripsService.add({ name, country, date })
+    // this.setState({
+    //   redirect: true
+    // })     
     .then( (response) => {
-      console.log(response, ' --- frontend response')
+      console.log('create response', response);
+      
       return response;
     })
     .catch( error => console.log(error) )
