@@ -4,10 +4,21 @@ import Clock from "./Clock";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { deadline: "January, 10, 2030" };
+    this.state = { 
+      deadline: ""
+    };
   }
+
+  componentDidMount(props) {
+    console.log(this.props);
+    
+    this.setState({
+      deadline: this.props.tripDate
+    
+    })
+  }
+
   render() {
-    console.log(this.props)
     return (
       <div className="App">
         <div className="App-title">Countdown Timer</div>
