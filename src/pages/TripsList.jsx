@@ -29,13 +29,23 @@ class TripsList extends Component {
   render() {   
     return (
       <>
-            <section>
-              <section className=''>
-                <a href="/trip/create">Create a new trip</a>
+            <section className='dashboard-container'>
+                <a className='card' id='button-create' href="/trip/create"><p>Create a new trip</p></a>
                 {this.state.userWithTrips.trips ? this.state.userWithTrips.trips.map((trip)=> {
-                  return <a href={`/dashboard/${trip._id}`}>{trip.name}</a>
+                  return (
+                    <section className='card'>
+                      <a href={`/dashboard/${trip._id}`}>
+                        <h1>{trip.name}</h1>
+                        <h3>{trip.country}</h3>
+                        <p>{trip.date}</p>
+                      </a>
+                      <section className='card-buttons'>
+                        <button>Edit</button>
+                        <button>Delete</button>
+                      </section>
+                    </section>
+                  ) 
                 }) : null}
-              </section>
             </section>
       </>
     )
