@@ -35,6 +35,25 @@ class TripsService {
     return this.trips.get(`/view/${id}`)
       .then(response => response.data);
   }
+
+  delete (id) {    
+
+    return this.trips.delete(`/delete/${id}`)
+      .then(response => response.data);
+  }
+  addActivity (object) {  
+    console.log(object.id);
+      
+    return this.trips.post(`/addActivity/${object.id}`, {object})
+      .then(response => response.data);
+  }
+
+  activitiesList (id) {    
+    console.log('------------------activitiesList--------------');
+    
+    return this.trips.get(`/viewActivities/${id}`, {id})
+      .then(response => response.data);
+  }
 }
 
 const tripsService = new TripsService();
