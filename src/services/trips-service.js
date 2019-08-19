@@ -48,15 +48,20 @@ class TripsService {
   }
 
   activityDelete (id) {
+    console.log(id);
+    
     return this.trips.delete(`/deleteActivity/${id}`)
     .then(response => response.data)
   }
 
-  activitiesList (id) {    
-    console.log('------------------activitiesList--------------');
-    
+  activitiesList (id) {        
     return this.trips.get(`/viewActivities/${id}`, {id})
       .then(response => response.data);
+  }
+
+  oneActivity (id) {
+    return this.activitiesList.get(`/oneActivity/${id}`)
+    .then(response => response.data)
   }
 }
 
