@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 
+import { Link } from 'react-router-dom'
+
 import withAuth from './../components/withAuth';
 
 import tripsService from '../services/trips-service';
+
+import moment from 'moment';
 
 
 class TripsList extends Component {
@@ -45,11 +49,11 @@ class TripsList extends Component {
                 {this.state.userWithTrips.trips ? this.state.userWithTrips.trips.map((trip)=> {
                   return (
                     <section className='card'>
-                      <a href={`/dashboard/${trip._id}`}>
+                      <Link to={`/dashboard/${trip._id}`} >
                         <h1>{trip.name}</h1>
                         <h3>{trip.country}</h3>
-                        <p>{trip.date}</p>
-                      </a>
+                        <p>{moment(trip.date).format('LL')}</p>
+                      </Link>
                       <section className='card-buttons'>
                         <button >Edit</button>
                         {/* <button onClick={this.handleDelete(trip._id)}>Delete</button> */}
