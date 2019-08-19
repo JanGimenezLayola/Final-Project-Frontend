@@ -16,6 +16,7 @@ class CreateTrip extends Component {
     page1: true,
     page2: false, 
     page3: false,
+    page4: false,
     redirect: false,
   }
 
@@ -35,13 +36,21 @@ class CreateTrip extends Component {
     this.setState({ page3: false, page2: true})
   }
 
+  handle3 = () => {
+    this.setState({ page3: false, page4: true})
+  }
+
+  handleBackTo3 = () => {
+    this.setState({ page4: false, page: true})
+  }
 
 
   render() {
-    const { countryArray, page1, page2, page3 } = this.state;
+    const { countryArray, page1, page2, page3, page4 } = this.state;
     const open1 = page1 ? 'page1-opened' : 'page-closed';
     const open2 = page2 ? 'page2-opened' : 'page-closed';
     const open3 = page3 ? 'page3-opened' : 'page-closed';
+    const open4 = page4 ? 'page4-opened' : 'page-closed';
     return (
     <section  className='create-form-main main-splash'>
       <Form id='create-form' className='create-form-container'autoComplete="off" >
@@ -68,7 +77,13 @@ class CreateTrip extends Component {
         <div className={`create-form-div ${open3} form-sections`}>
           <button type='button' onClick={this.handleBackTo2}>Back</button>
           <h2>My adventure start at...</h2>
-          <Field type='date' name='date' />
+          <Field type='datetime-local' name='date' />
+          <button type='button' onClick={this.handle3}>Next</button>
+        </div>
+        <div className={`create-form-div ${open4} form-sections`}>
+          <button type='button' onClick={this.handleBackTo2}>Back</button>
+          <h2>I return to home at...</h2>
+          <Field type='datetime-local' name='finaldate' />
           <button className='submit-button' type='submit'>Create trip</button>
         </div>
       </Form>
@@ -79,11 +94,12 @@ class CreateTrip extends Component {
 }
 
 export default withAuth(withFormik({
-  mapPropsToValues({ name, country, date, users }) {
+  mapPropsToValues({ name, country, date, finaldate }) {
     return ({
       name: name || '',
       country: country || '',
       date: date || '',
+      finaldate: finaldate || '',
     })
   },
   
@@ -91,7 +107,8 @@ export default withAuth(withFormik({
     const name = values.name;
     const country = values.country;
     const date = values.date;
-    tripsService.add({ name, country, date })
+    const finaldate = values.finaldate;
+    tripsService.add({ name, country, date, finaldate })
     // this.setState({
     //   redirect: true
     // })     
