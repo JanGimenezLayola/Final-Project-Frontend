@@ -6,6 +6,7 @@ import Countdown from '../components/Countdown.jsx'
 import Popup from '../components/PopupActivities.jsx'
 
 import tripsService from '../services/trips-service';
+import moment from 'moment';
 
 class Dashboard extends Component {
 
@@ -65,7 +66,8 @@ class Dashboard extends Component {
           /> 
           : null } <>
           <article className='card'>
-          <Countdown tripDate={this.state.date} />
+          {/* <Countdown tripdate={moment(this.state.date).format('MMMM Do YYYY, h:mm a')} /> */}
+          <Countdown timeTillDate={moment(this.state.date).format('MMMM DD YYYY, h:mm a')} timeFormat="MM DD YYYY, h:mm a" />
           </article>
           <article className='card'>
             <button onClick={this.togglePopup.bind(this)}>Add new activity</button> 
