@@ -9,8 +9,8 @@ class TripsService {
   }
 
   add (trip) {
-      const { name, country, date } = trip 
-      return this.trips.post('/add', {name, country, date})
+      const { name, country, date, finaldate } = trip 
+      return this.trips.post('/add', {name, country, date, finaldate})
       .then(({ data }) => data);
   }
 
@@ -41,11 +41,15 @@ class TripsService {
     return this.trips.delete(`/delete/${id}`)
       .then(response => response.data);
   }
-  addActivity (object) {  
-    console.log(object.id);
-      
+
+  addActivity (object) {        
     return this.trips.post(`/addActivity/${object.id}`, {object})
       .then(response => response.data);
+  }
+
+  activityDelete (id) {
+    return this.trips.delete(`/deleteActivity/${id}`)
+    .then(response => response.data)
   }
 
   activitiesList (id) {    

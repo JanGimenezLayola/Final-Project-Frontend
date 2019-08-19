@@ -43,7 +43,14 @@ class Dashboard extends Component {
     .catch(error => console.log(error) );
   };
 
-
+  handleDelete(id) {
+    tripsService.activityDelete(id)
+    .then((response) => {
+      this.setState({
+        activities: response
+      }) 
+    })
+  }
 
 
   togglePopup() {  
@@ -75,6 +82,7 @@ class Dashboard extends Component {
               return (
                 <article>
                   <h3>{activity.name}</h3>
+                  <button onClick={this.handleDelete(activity._id)}>X</button>
                 </article>
               )
             }): null }
