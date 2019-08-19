@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import withAuth from './withAuth';
 
-import tripsService from '../services/trips-service';
+// import tripsService from '../services/trips-service';
 
 import NavbarButton from './navbar-button'
 
@@ -27,33 +27,27 @@ class Navbar extends Component {
       })
     }
   }
-  
-  handleSelect = () => {
-    if(this.state.selectCountry){
-      this.setState({
-        selectCountry: false
-      })
-    }else{
-      this.setState({
-        selectCountry: true
-      })
-    }
-  }
 
   componentDidMount() {
-    tripsService.list()
-    .then( (user) => {
-      return this.setState({
-        userWithTrips: user,
-      });
+    this.setState({
+      menu: false
     })
-    .catch( error => console.log(error) )
   }
+
+
+  // componentDidMount() {
+  //   tripsService.list()
+  //   .then( (user) => {
+  //     return this.setState({
+  //       userWithTrips: user,
+  //     });
+  //   })
+  //   .catch( error => console.log(error) )
+  // }
 
   render() {   
     const classMenu = this.state.menu ? 'navbar-opened' : 'navbar-closed';
-    const classSelector = this.state.selectCountry ? 'selector-opened' : 'selector-closed';    
-    return (
+     return (
       <>
         {this.props.isLoggedIn ? (
           <nav  className={classMenu}>
@@ -61,7 +55,6 @@ class Navbar extends Component {
             <section className='img-section'>
               <div className='image-container'>
                 <img src={this.props.user.image} alt="hola"/>
-                {this.state.menu}
                 <section id='profile-edit'>
                   <Link to='/'><p>edit profile</p></Link>
                 </section>
@@ -74,12 +67,7 @@ class Navbar extends Component {
               </section>
             </section>
             <section>
-              <section className={classSelector}>
-                {this.state.userWithTrips.trips ? this.state.userWithTrips.trips.map((trip)=> {
-                  return <a href={`/dashboard/${trip._id}`}>{trip.name}</a>
-                }) : null}
-              </section>
-              <p onClick={this.handleSelect} className='country-selector'>Select your trip</p>
+              <Link to='/' className='country-selector'>Select your trip</Link>
             </section>
           </nav>
         ) : null }   
