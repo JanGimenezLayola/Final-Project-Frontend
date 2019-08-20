@@ -47,9 +47,7 @@ class TripsService {
       .then(response => response.data);
   }
 
-  activityDelete (id) {
-    console.log(id);
-    
+  activityDelete (id) {    
     return this.trips.delete(`/deleteActivity/${id}`)
     .then(response => response.data)
   }
@@ -61,11 +59,6 @@ class TripsService {
 
   oneActivity (id) {
     return this.activitiesList.get(`/oneActivity/${id}`)
-    .then(response => response.data)
-  }
-
-  usersInTrip(id) {
-    return this.trips.get(`/usersInTrip/${id}`)
     .then(response => response.data)
   }
 

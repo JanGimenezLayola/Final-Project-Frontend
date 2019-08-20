@@ -15,7 +15,10 @@ class UsersService {
     .then(response => response.data)
   }  
 
-
+  usersInTrip(id) {
+    return this.users.get(`/usersInTrip/${id}`)
+    .then(response => response.data)
+  }
   
 }
 

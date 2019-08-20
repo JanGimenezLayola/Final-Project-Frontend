@@ -19,14 +19,22 @@ class Dashboard extends Component {
     name: '',
     showPopup: false,
     updatePopup: false,
-    activities: []
+    activities: [],
+    users: []
   }
 
   componentDidMount() {
+ 
     const id = this.props.match.params.id
-    tripsService.usersInTrip(id)
+    const userId = this.props.user._id
+    
+    usersService.usersInTrip(id)
     .then ( (response) => {
-      return console.log('SOY LA RESPONSE DE USER TRIP', response)
+      this.setState({
+        users: response
+      })
+      console.log(this.state);
+      
     })
     tripsService.activitiesList (id)
     .then( (response) => {    
@@ -118,6 +126,12 @@ class Dashboard extends Component {
           </article>         
           <article className='card'>
             <SearchBar props={this.props} />
+            {console.log(this.state)}
+            {this.state.users ? this.state.users.map((user) => {
+              if (user) {
+                return <p>{user.email}</p>
+              }
+            }) : null}
           </article>
           <article className='card'>
 
