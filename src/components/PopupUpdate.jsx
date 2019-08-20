@@ -1,5 +1,5 @@
 import React from 'react';  
-import tripsService from '../services/trips-service';
+import activityService from '../services/activities-service';
 
 import { Redirect } from 'react-router-dom';
 import withAuth from './../components/withAuth';
@@ -19,11 +19,8 @@ class PopupUpdate extends React.Component {
   }
 
   componentDidMount() {
-    // console.log(this.props);
-    console.log(this.props.props.match.params.id);
-    
-    const id = this.props.props.match.params.id
-    tripsService.activitiesList (id)
+    const id = this.props.activityId
+    activityService.oneActivity (id)
     .then( (response) => {    
       console.log(response);
        
@@ -51,11 +48,11 @@ if(this.state.redirect){
           {console.log(this.props)}
           <section>
             <label htmlFor="name">Name</label>
-            <Field type='name' name='name' value={this.state.name} />
+            <Field type='name' name='name' placeholder={this.state.name} />
           </section>
           <section>
            <label htmlFor="date">Description</label>
-           <Field className='date' type='datetime-local' name='date'  value={this.props.values.date}/>
+           <Field className='date' type='datetime-local' name='date'  placeholder={this.state.date}/>
           </section>
           {/* <section>
             <label htmlFor="Tickets">Description</label>
@@ -65,7 +62,7 @@ if(this.state.redirect){
             <label htmlFor="price">Description</label>
             <Field type='number' name='price' placeholder='75' />
           </section> */}
-          <button onClick={() => this.handleSubmit(this.props)}>Submit</button>
+          <button type='submit'>Submit</button>
         </Form> 
       </div> 
     </div>  
@@ -80,13 +77,19 @@ export default withAuth(withFormik({
       date: date || '',
     })
   },
-  handleSubmit(props)  {
-    console.log(props.match.params.id);
-    const id = this.props.match.params.id
-    const name = props.values.name;
-    const date = props.values.date;    
-    tripsService.addActivity({ id, name, date })
+  handleSubmit(props, state)  {
+    console.log(props);
+    const id = state.props.activityId
+    const name = props.name;
+    const date = props.date;    
+    console.log(id);
+    console.log(name);
+    console.log(date);
+    
+    activityService.updateActivity( id, {name, date} )
     .then (response => {
+      console.log('Response', response);
+      
     })
     .catch( error => console.log(error) )
   },
