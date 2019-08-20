@@ -44,8 +44,12 @@ class SearchBar extends Component {
   }
 
   handleClickAddUser(userId) {
-    // tripsService.addUser()
-    
+    const id = this.props.props.match.params.id    
+    tripsService.addUser(id, userId)
+    .then((response) => {
+      console.log('ClickAddUser RESPONSE', response);
+      
+    })
   }
 
   render() {

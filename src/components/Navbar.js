@@ -33,18 +33,7 @@ class Navbar extends Component {
       menu: false
     })
   }
-
-
-  // componentDidMount() {
-  //   tripsService.list()
-  //   .then( (user) => {
-  //     return this.setState({
-  //       userWithTrips: user,
-  //     });
-  //   })
-  //   .catch( error => console.log(error) )
-  // }
-
+  
   render() {   
     const classMenu = this.state.menu ? 'navbar-opened' : 'navbar-closed';
      return (

@@ -9,6 +9,7 @@ import SearchBar from '../components/SearchBar.jsx'
 
 import tripsService from '../services/trips-service';
 import moment from 'moment';
+import usersService from '../services/users-services';
 
 class Dashboard extends Component {
 
@@ -23,13 +24,16 @@ class Dashboard extends Component {
 
   componentDidMount() {
     const id = this.props.match.params.id
+    tripsService.usersInTrip(id)
+    .then ( (response) => {
+      return console.log('SOY LA RESPONSE DE USER TRIP', response)
+    })
     tripsService.activitiesList (id)
     .then( (response) => {    
-
-      const order = response.activities.sort(function(a, b) {
-      return a.date>b.date ? 1 : a.date<b.date ? -1 : 0
-    });
-       
+      response.activities.sort(function(a, b) {
+        return a.date>b.date ? 1 : a.date<b.date ? -1 : 0
+      });
+      
       this.setState({
         name: response.name,
         country: response.country,
@@ -113,10 +117,10 @@ class Dashboard extends Component {
             }): null }
           </article>         
           <article className='card'>
-            <SearchBar />
+            <SearchBar props={this.props} />
           </article>
           <article className='card'>
-            
+
           </article>
           </>   
         

@@ -63,6 +63,16 @@ class TripsService {
     return this.activitiesList.get(`/oneActivity/${id}`)
     .then(response => response.data)
   }
+
+  usersInTrip(id) {
+    return this.trips.get(`/usersInTrip/${id}`)
+    .then(response => response.data)
+  }
+
+  addUser(id, userId) {
+    return this.trips.put(`/addUserToTrip/${userId}/${id}`)
+    .then(response => response.data)
+  }
 }
 
 const tripsService = new TripsService();

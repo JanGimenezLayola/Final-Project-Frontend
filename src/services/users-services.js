@@ -10,10 +10,12 @@ class UsersService {
     });
   }
 
-  getUsers (id) {
+  getUsers () {
     return this.users.get(`/getUsers`)
     .then(response => response.data)
   }  
+
+
   
 }
 
