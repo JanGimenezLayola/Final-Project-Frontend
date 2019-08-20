@@ -20,14 +20,14 @@ class TripsService {
   //     .then(({ data }) => data);
   // }
 
-  // delete () {
-  //   return this.trips.post('/trip/:id/delete')
-  //     .then(response => response.data);
-  // }
+  delete () {
+    return this.trips.delete('/trip/:id/delete')
+      .then(response => response.data);
+  }
 
   list () {    
     return this.trips.get(`/view`)
-      .then(response => response.data);
+      .then(response =>response.data);
   }
 
 
