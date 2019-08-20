@@ -8,6 +8,7 @@ node_modules/
 coverage/
 build/
 dist/
+firebase/
 
 # ide
 .bak
@@ -28,3 +29,4 @@ desktop.ini
 
 # dotenv
 .env
+
