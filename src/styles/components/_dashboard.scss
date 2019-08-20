@@ -39,10 +39,22 @@
         text-align: left;
       }
     }
+    .activities {
+      argin: 5px 0;
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: black 1px solid;
+      padding: 10px 31px;
+    }
     .card-buttons {
       display: flex;
       flex-direction: column;
     }
+  }
+  .card-activities {
+    flex-direction: column;
   }
 }
 
