@@ -12,7 +12,7 @@ import moment from 'moment';
 class TripsList extends Component {
 
   state = {
-    userWithTrips: [],
+    trips: [],
   }
 
 
@@ -21,7 +21,7 @@ class TripsList extends Component {
     tripsService.list()
     .then( (user) => {
       return this.setState({
-        userWithTrips: user,
+        trips: user.trips,
       });
       
     })
@@ -29,12 +29,13 @@ class TripsList extends Component {
   }
 
   handleDelete(id) {
-    console.log('im handleDelete', id);
     tripsService.delete(id)
-    .then( (response) => {
-      console.log('----frontend response', response);
-      
-      return response;
+    .then( (response) => {  
+      console.log(response);
+          
+      return this.setState({
+        trips: response,
+      });
     })
     .catch( error => console.log(error) )
   }
@@ -42,11 +43,13 @@ class TripsList extends Component {
 
   
   render() {   
+    console.log(this.state);
+    
     return (
       <>
             <section className='dashboard-container'>
                 <a className='card' id='button-create' href="/trip/create"><p>Create a new trip</p></a>
-                {this.state.userWithTrips.trips ? this.state.userWithTrips.trips.map((trip)=> {
+                {this.state.trips ? this.state.trips.map((trip)=> {
                   return (
                     <section className='card'>
                       <Link to={`/dashboard/${trip._id}`} >
