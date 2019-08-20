@@ -18,7 +18,9 @@ class ActivitiesService {
     console.log(id);
     
     return this.activities.put(`/updateActivity/${id}`, activityUpdated)
-    .then(response => response.data)
+    .then(response =>  response.data)
+    
+    
   }
 }
 
