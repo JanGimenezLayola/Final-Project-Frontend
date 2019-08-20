@@ -9,10 +9,15 @@ class ActivitiesService {
   }
 
   oneActivity (id) {
-    console.log('HEEEEEEEEEEY ACTIVITIES SERVICE');
+    return this.activities.get(`/oneActivity/${id}`)
+    .then(response => response.data)
+  }  
+  
+  updateActivity (id, activityUpdated) {
+    console.log('HEEEEEEEEEEY ACTIVITIES SERVICE', activityUpdated);
     console.log(id);
     
-    return this.activities.get(`/oneActivity/${id}`)
+    return this.activities.put(`/updateActivity/${id}`, activityUpdated)
     .then(response => response.data)
   }
 }
