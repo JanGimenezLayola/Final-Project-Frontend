@@ -25,16 +25,10 @@ class Dashboard extends Component {
     const id = this.props.match.params.id
     tripsService.activitiesList (id)
     .then( (response) => {    
-      console.log('resposne -->', response.activities);
 
       const order = response.activities.sort(function(a, b) {
-        console.log('soy a', a.date);
-        
-        
-    //     b.date = new Date(b.dateModified);
       return a.date>b.date ? 1 : a.date<b.date ? -1 : 0
     });
-       console.log('order --> ',order);
        
       this.setState({
         name: response.name,
@@ -64,18 +58,14 @@ class Dashboard extends Component {
          showPopup: !this.state.showPopup  
     })
   }
-  togglePopupUpdate(id) {  
-    console.log(id);
-    
+  togglePopupUpdate(id) {      
     this.setState({  
          updatePopup: !this.state.updatePopup,
          activityId: id
     })
   }
 
-  render() { 
-    console.log(this.state);
-    
+  render() {     
     return (
       <section className='dashboard-container'>
         <h1 className='trip-name'>{this.state.name}</h1>
@@ -98,12 +88,10 @@ class Dashboard extends Component {
         }
            <>
           <article className='card'>
-          {/* <Countdown tripdate={moment(this.state.date).format('MMMM Do YYYY, h:mm a')} /> */}
           <Countdown timeTillDate={moment(this.state.date).format('MMMM DD YYYY, h:mm a')} timeFormat="MM DD YYYY, h:mm a" />
           </article>
           <article className='card card-activities'>
             <button onClick={this.togglePopup.bind(this)}>Add new activity</button> 
-            {/* {console.log(this.state.activities) } */}
             {this.state.activities.length > 0 ? this.state.activities.map((activity) => {
               return (
                 <article className='activities'>
