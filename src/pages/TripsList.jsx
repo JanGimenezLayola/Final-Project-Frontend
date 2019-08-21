@@ -17,17 +17,23 @@ class TripsList extends Component {
 
 
 
-  componentDidMount() {
-    tripsService.list()
+  componentDidMount() {    
+    console.log(this.props);
+    
+    this.props.me()
+    .then (() => {
+      tripsService.list()
     .then( (user) => {
       return this.setState({
         trips: user.trips,
       });
-      
     })
     .catch( error => console.log(error) )
+    })
+    
+    
   }
-
+    
   handleDelete(id) {
     tripsService.delete(id)
     .then( (response) => {            
