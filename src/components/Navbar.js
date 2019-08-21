@@ -51,7 +51,6 @@ class Navbar extends Component {
       <>
         {this.props.isLoggedIn ? ( console.log('render', this.state),
           <nav  className={this.state.menu ? 'navbar-opened' : 'navbar-closed'}>
-            {this.state.menu ? <p>Open</p> : <p>Closed</p>}
             <div className='click-navbar' onClick={this.handleClick}></div>
             <section className='img-section'>
               <div className='image-container'>
