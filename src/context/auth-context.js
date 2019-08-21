@@ -53,8 +53,8 @@ class AuthProvider extends Component {
     })
   }
 
-  componentDidMount() {
-    authService.me()
+  getMe = () => {
+    return (authService.me()
     .then((user) => {
       this.setState({
         user,
@@ -67,7 +67,11 @@ class AuthProvider extends Component {
         isLoggedIn: false,
         isLoading: false
       })
-    })
+    }))
+  }
+
+  componentDidMount() {
+    this.getMe();
   }
 
   render() {
@@ -81,7 +85,8 @@ class AuthProvider extends Component {
               isLoggedIn,
               login: this.userLogin,
               signup: this.userSignUp,
-              logout: this.userLogout
+              logout: this.userLogout,
+              me: this.getMe
             }
           }> 
             {this.props.children}

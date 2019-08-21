@@ -16,34 +16,46 @@ class Navbar extends Component {
     selectCountry: false
   }
 
-  handleClick = () => {
-    if(this.state.menu){
-      this.setState({
-        menu: false
-      })
-    }else{
-      this.setState({
-        menu: true
-      })
-    }
-  }
-
-  componentDidMount() {
+  setMenuFalse() {
     this.setState({
       menu: false
     })
   }
+
+  setMenuFalseAndLogout() {
+    this.props.logout()
+    this.setState({
+      menu: false
+    })
+  }
+
+  componentDidMount() {    
+    this.props.me()
+    .then (() => {
+      this.setState({
+        menu: false
+      })      
+    })
+  }
+
+  handleClick = () => {
+      this.setState({
+        menu: !this.state.menu
+      })
+  }  
+
   
   render() {   
-    const classMenu = this.state.menu ? 'navbar-opened' : 'navbar-closed';
+    
      return (
       <>
-        {this.props.isLoggedIn ? (
-          <nav  className={classMenu}>
-            <div className='click-navbar'onClick={this.handleClick}></div>
+        {this.props.isLoggedIn ? ( console.log('render', this.state),
+          <nav  className={this.state.menu ? 'navbar-opened' : 'navbar-closed'}>
+            {this.state.menu ? <p>Open</p> : <p>Closed</p>}
+            <div className='click-navbar' onClick={this.handleClick}></div>
             <section className='img-section'>
               <div className='image-container'>
-                <img src={this.props.user.image} alt="hola"/>
+                <img src={this.props.user.image} alt="profile"/>
                 <section id='profile-edit'>
                   <Link to='/'><p>edit profile</p></Link>
                 </section>
@@ -52,11 +64,11 @@ class Navbar extends Component {
                 <NavbarButton route='/' title='My Tickets'/>
                 <NavbarButton route='/' title='Budget'/>
                 <NavbarButton route='/' title='Information'/>
-                <button className='logout-button' onClick={this.props.logout}>Logout</button>
+                <button className='logout-button' onClick={() => this.setMenuFalseAndLogout()}>Logout</button>
               </section>
             </section>
             <section>
-              <Link to='/' className='country-selector'>Select your trip</Link>
+              <Link to='/' onClick={() => this.setMenuFalse()} className='country-selector'>Select your trip</Link>
             </section>
           </nav>
         ) : null }   
