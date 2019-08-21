@@ -30,9 +30,7 @@ class TripsList extends Component {
 
   handleDelete(id) {
     tripsService.delete(id)
-    .then( (response) => {  
-      console.log(response);
-          
+    .then( (response) => {            
       return this.setState({
         trips: response,
       });
@@ -42,9 +40,7 @@ class TripsList extends Component {
 
 
   
-  render() {   
-    console.log(this.state);
-    
+  render() {       
     return (
       <>
             <section className='dashboard-container'>
