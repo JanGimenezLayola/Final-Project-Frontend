@@ -30,8 +30,8 @@ class Dashboard extends Component {
     const id = this.props.match.params.id
     const userId = this.props.user._id
 
-    tripInfoService.getInfo()
-    .then ((response) => { console.log(response)})
+    // tripInfoService.getInfo()
+    // .then ((response) => { console.log('respospdnsisndi',response)})
     tripsService.activitiesList (id)
     .then( (response) => {    
       response.activities.sort(function(a, b) {
@@ -44,6 +44,8 @@ class Dashboard extends Component {
         date: response.date,
         activities: response.activities
       })   
+      console.log(this.state);
+      
     })
     .catch(error => console.log(error) )
   }
@@ -56,10 +58,6 @@ class Dashboard extends Component {
       })
     })
   }
-
- handleSearchBarChange(props) {
-
- }
 
   togglePopup() {  
     this.setState({  
@@ -96,10 +94,10 @@ class Dashboard extends Component {
         }
            <>
           <article className='card'>
-            {moment().format('MMMM DD YYYY, h:mm a') > moment(this.state.date).format('MMMM DD YYYY, h:mm a') ?
-             <Countdown timeTillDate={moment(this.state.date).format('MMMM DD YYYY, h:mm a')} timeFormat="MM DD YYYY, h:mm a" /> 
+            {moment().format('MMMM DD YYYY, h:mm a') < moment(this.state.date).format('MMMM DD YYYY, h:mm a') ?
+            <Countdown timeTillDate={moment(this.state.date).format('MMMM DD YYYY, h:mm a')} timeFormat="MM DD YYYY, h:mm a" /> 
              :
-             <h3>Enjoy your trip!</h3>}
+             <h3>Enjoy your trip! ✈️</h3>}
           </article>
           <article className='card card-activities'>
             <button onClick={this.togglePopup.bind(this)}>Add new activity</button> 
