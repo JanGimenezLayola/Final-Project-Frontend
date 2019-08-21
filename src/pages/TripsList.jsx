@@ -17,9 +17,7 @@ class TripsList extends Component {
 
 
 
-  componentDidMount() {    
-    console.log(this.props);
-    
+  componentDidMount() {        
     this.props.me()
     .then (() => {
       tripsService.list()
