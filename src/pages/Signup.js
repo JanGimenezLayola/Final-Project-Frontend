@@ -10,6 +10,7 @@ import withAuth from '../components/withAuth';
 
 class Signup extends Component {
   state = {
+    name: '',
     email: '',
     password: '',
     passwordRepeat: '',
@@ -42,6 +43,10 @@ class Signup extends Component {
       <section className="main-splash">
         <Form autoComplete="off">
           <section className='form-sections'>
+            <Field type='string' name='name' placeholder='name' />
+            {this.props.touched.name && this.props.errors.name && <p className='form-error'>{this.props.errors.name}</p>}
+          </section>
+          <section className='form-sections'>
             <Field type='email' name='email' placeholder='email' />
             {this.props.touched.email && this.props.errors.email && <p className='form-error'>{this.props.errors.email}</p>}
           </section>
@@ -68,27 +73,28 @@ class Signup extends Component {
 }
 
 export default withAuth(withFormik({
-  mapPropsToValues({ email, password, passwordRepeat }) {
+  mapPropsToValues({ name, email, password, passwordRepeat }) {
     return ({
+      name: name || '',
       email: email || '',
       password: password || '',
       passwordRepeat: passwordRepeat || '',
     })		
   },
   handleSubmit(values, bag) {
-    console.log(values)
-
+    const name = values.name;
     const email = values.email;
     const password = values.password;
     const passwordRepeat = values.passwordRepeat;
     if(password !== passwordRepeat) {
       bag.setErrors({
-        passwordMatch: 'passwords doesnt match'
+        passwordMatch: "passwords doesn't match"
       })
     } else {
-      bag.props.signup({ email, password})
+      bag.props.signup({ name, email, password})
       .then( (user) => {
         this.setState({
+            name: '',
             email: '',
             password: '',
             passwordRepeat: '',
@@ -98,6 +104,8 @@ export default withAuth(withFormik({
     }
   },
   validationSchema: Yup.object().shape({
+    name: Yup.string()
+    .required('name is required'),
     email: Yup.string()
       .email('wrong email')
       .required('email is required'),
