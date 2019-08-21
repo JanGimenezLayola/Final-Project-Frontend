@@ -81,7 +81,27 @@
         height: 30px;
       }
     }
-}
+    .no-trips-container {
+      display: flex;
+      flex-direction: column;
+      .not-trip {
+        margin: 5vh 10vw;
+        text-align: center;
+        font-size: 17px;
+        font-family: "Roboto Condensed", sans-serif;
+        opacity: 0.7;
+        font-weight: 100;
+        a {
+          color: rgb(4, 71, 2);
+        }
+      }
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+
 
 @media screen and (min-width: $desktop) {
   .container {

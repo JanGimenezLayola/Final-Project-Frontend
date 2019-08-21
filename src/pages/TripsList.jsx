@@ -48,7 +48,7 @@ class TripsList extends Component {
     return (
            <section className='dashboard-container'>
                 <a className='card' id='button-create' href="/trip/create"><p>Create a new trip</p></a>
-                {this.state.trips ? this.state.trips.map((trip)=> {
+                {this.state.trips.length ? this.state.trips.map((trip)=> {
                   return (
                     <section className='card'>
                       <Link to={`/dashboard/${trip._id}`} >
@@ -62,7 +62,12 @@ class TripsList extends Component {
                       </section>
                     </section>
                   ) 
-                }) : null}
+                }) : 
+                <section className='no-trips-container'>
+                  <h3 className='not-trip'> You didn't create any trip yet, <a href="/trip/create">create one</a> or ask another user to add in her trip.</h3>
+                  <img src='../../travel.png' alt='world and tipic travel things'></img>
+                </section>
+                }
             </section>
     )
   }
