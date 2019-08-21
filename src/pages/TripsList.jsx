@@ -46,7 +46,6 @@ class TripsList extends Component {
   
   render() {       
     return (
-      <>
            <section className='dashboard-container'>
                 <a className='card' id='button-create' href="/trip/create"><p>Create a new trip</p></a>
                 {this.state.trips ? this.state.trips.map((trip)=> {
@@ -58,14 +57,13 @@ class TripsList extends Component {
                         <p>{moment(trip.date).format('LL')}</p>
                       </Link>
                       <section className='card-buttons'>
-                        <button >Edit</button>
-                        <button onClick={() => this.handleDelete(trip._id)}>Delete</button>
+                        {/* <button >Edit</button> */}
+                        <img onClick={() => this.handleDelete(trip._id)} src='./../../delete-icon.png' alt='delete trip'></img>
                       </section>
                     </section>
                   ) 
                 }) : null}
             </section>
-      </>
     )
   }
 }
