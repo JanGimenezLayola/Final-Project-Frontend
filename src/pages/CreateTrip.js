@@ -20,6 +20,11 @@ class CreateTrip extends Component {
     redirect: false,
   }
 
+  status = {
+    redirect: false,
+
+  }
+
   handle1 = () => {
     this.setState({ page1: false, page2: true})
   }
@@ -58,36 +63,42 @@ class CreateTrip extends Component {
     return (
     <section  className='create-form-main main-splash'>
       <Form id='create-form' className='create-form-container'autoComplete="off" >
-        <div className= {`create-form-div ${open1} form-sections`}>
-          <button  type='button' onClick={this.props.history.goBack}>Back</button>
-          <h2>What's the trip name?</h2>
-          <Field type='string' name='name' placeholder='Trip name' />
-          {this.props.errors.name && <p className='form-error'>{this.props.errors.name}</p>}
-          {this.props.touched.name && this.props.errors.name === undefined ? <button type='button' onClick={this.handle1}>Next</button> : null}
-          {console.log(this.props.errors.name)}
-          {console.log(this.props.touched.name)}
-          
+        <div className= {`create-form-div ${open1}`}>
+          <button className='back' type='button' onClick={this.props.history.goBack}><img src='./../../back.png' alt='go back'></img></button>
+          <div>
+            <h2>What's the trip name?</h2>
+            <Field type='string' name='name' placeholder='Trip name' />
+            {this.props.errors.name && <p className='form-error'>{this.props.errors.name}</p>}
+          </div>
+          {this.props.touched.name && this.props.errors.name === undefined ?
+          <button type='button' onClick={this.handle1}>Next</button> : <button className='button-none'></button> }         
         </div>
-        <div className={`create-form-div ${open2} form-sections`}>
-          <button type='button' onClick={this.handleBackTo1}>Back</button>
-          <h2>Where are you going?</h2>
-          <Field component='select' name='country' placeholder=''>
-            {countryArray.map((country) => {
-              return (<option value={country}>{country}</option>)
-            })}
-          </Field> 
+        <div className={`create-form-div ${open2}`}>
+          <button className='back' type='button' onClick={this.handleBackTo1}><img src='./../../back.png' alt='go back'></img></button>
+          <div>
+            <h2>Where are you going?</h2>
+            <Field component='select' name='country' placeholder=''>
+              {countryArray.map((country) => {
+                return (<option value={country}>{country}</option>)
+              })}
+            </Field> 
+          </div>
           <button type='button' onClick={this.handle2}>Next</button>
         </div>
-        <div className={`create-form-div ${open3} form-sections`}>
-          <button type='button' onClick={this.handleBackTo2}>Back</button>
-          <h2>My adventure start at...</h2>
-          <Field type='datetime-local' name='date' />
+        <div className={`create-form-div ${open3}`}>
+          <button className='back' type='button' onClick={this.handleBackTo2}><img src='./../../back.png' alt='go back'></img></button>
+          <div>
+            <h2>My adventure start at...</h2>
+            <Field type='datetime-local' name='date' />
+          </div>
           <button type='button' onClick={this.handle3}>Next</button>
         </div>
-        <div className={`create-form-div ${open4} form-sections`}>
-          <button type='button' onClick={this.handleBackTo2}>Back</button>
-          <h2>I return to home at...</h2>
-          <Field type='datetime-local' name='finaldate' />
+        <div className={`create-form-div ${open4}`}>
+          <button className='back' type='button' onClick={this.handleBackTo2}><img src='./../../back.png' alt='go back'></img></button>
+          <div>
+            <h2>I return to home at...</h2>
+            <Field type='datetime-local' name='finaldate' />
+          </div>
           <button className='submit-button' type='submit'>Create trip</button>
         </div>
       </Form>
@@ -96,8 +107,8 @@ class CreateTrip extends Component {
   }
 }
 
-export default withAuth(withFormik({
-  mapPropsToValues({ name, country, date, finaldate }) {
+export default withAuth(withFormik({  
+  mapPropsToValues({ name, country, date, finaldate }) {    
     return ({
       name: name || '',
       country: country || '',
@@ -106,18 +117,15 @@ export default withAuth(withFormik({
     })
   },
   
-    handleSubmit(values, {...bag})  {
+    handleSubmit(values,  {...bag})  {
     const name = values.name;
     const country = values.country;
     const date = values.date;
     const finaldate = values.finaldate;
     tripsService.add({ name, country, date, finaldate })
-    // this.setState({
-    //   redirect: true
-    // })     
-    .then( (response) => {      
-      console.log(bag)
-      return bag.props.history.goBack()
+    .then( (response) => {            
+      console.log(response);
+      
     })
     .catch( error => console.log(error) )
   },
