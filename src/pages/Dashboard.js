@@ -94,13 +94,13 @@ class Dashboard extends Component {
         }
            <>
           <article className='card'>
-            {moment().format('MMMM DD YYYY, h:mm a') < moment(this.state.date).format('MMMM DD YYYY, h:mm a') ?
+            {moment().format('MMMM DD YYYY, h:mm a') > moment(this.state.date).format('MMMM DD YYYY, h:mm a') ?
             <Countdown timeTillDate={moment(this.state.date).format('MMMM DD YYYY, h:mm a')} timeFormat="MM DD YYYY, h:mm a" /> 
              :
              <h3>Enjoy your trip! ✈️</h3>}
           </article>
           <article className='card card-activities'>
-            <button onClick={this.togglePopup.bind(this)}>Add new activity</button> 
+            <button className='addButton' onClick={this.togglePopup.bind(this)}><img src='./../../add.png' alt='add activity'></img></button> 
             {this.state.activities.length > 0 ? this.state.activities.map((activity) => {
               return (
                 <article className='activities'>
@@ -119,7 +119,7 @@ class Dashboard extends Component {
                   </section>
                 </article>
               )
-            }): null }
+            }): <p>Oh! You don't have any activity yet, create one now and start planning your trip</p> }
           </article>         
           <article className='card card-activities'>
             <SearchBar props={this.props} />
