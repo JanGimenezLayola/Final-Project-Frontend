@@ -49,10 +49,7 @@ export default withAuth(withFormik({
     bag.props.login({ email, password })
     // if(re(200))
     .then( () => {
-      this.setState({
-          email: '',
-          password: '',
-      })
+      console.log('all good')
     })
     .catch( error => console.log(error) )
   },
