@@ -29,4 +29,7 @@ desktop.ini
 
 # dotenv
 .env
-
+.env.development
+.firebase 
+firebase.json
+.firebaserc
