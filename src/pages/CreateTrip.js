@@ -44,6 +44,10 @@ class CreateTrip extends Component {
     this.setState({ page4: false, page: true})
   }
 
+  handleSumbit = () => {
+    return <Redirect to='/'/>
+  }
+
 
   render() {
     const { countryArray, page1, page2, page3, page4 } = this.state;
@@ -87,7 +91,6 @@ class CreateTrip extends Component {
           <button className='submit-button' type='submit'>Create trip</button>
         </div>
       </Form>
-      {this.state.redirect ? <Redirect to='/'/> : null}
     </section>
     )
   }
@@ -103,7 +106,7 @@ export default withAuth(withFormik({
     })
   },
   
-    handleSubmit(values, ...bag)  {
+    handleSubmit(values, {...bag})  {
     const name = values.name;
     const country = values.country;
     const date = values.date;
@@ -112,10 +115,9 @@ export default withAuth(withFormik({
     // this.setState({
     //   redirect: true
     // })     
-    .then( (response) => {
-      console.log('create response', response);
-      
-      return response;
+    .then( (response) => {      
+      console.log(bag)
+      return bag.props.history.goBack()
     })
     .catch( error => console.log(error) )
   },

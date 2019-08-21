@@ -42,12 +42,12 @@ class TripsList extends Component {
     .catch( error => console.log(error) )
   }
 
-
+  
   
   render() {       
     return (
       <>
-            <section className='dashboard-container'>
+           <section className='dashboard-container'>
                 <a className='card' id='button-create' href="/trip/create"><p>Create a new trip</p></a>
                 {this.state.trips ? this.state.trips.map((trip)=> {
                   return (
