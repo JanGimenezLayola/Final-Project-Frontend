@@ -21,8 +21,8 @@ if(this.state.redirect){
     return (  
       
     <div className='popup'>  
-      <div className='popup\_inner card'>  
-        <button onClick={this.props.closePopup}>X</button>  
+      <div className='popup-inner'>  
+        <button onClick={this.props.closePopup}><img src='./../../close.png' alt='delete trip'></img></button>  
         <Form className='create-activity' autoComplete="off" redirect={this.state.redirect}>
           <h1>{this.props.text}</h1>
           <section>
