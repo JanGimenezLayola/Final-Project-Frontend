@@ -13,10 +13,17 @@ class SearchBar extends Component {
     users: [],
     showingUsers: [],
     searchValue: null,
-
+    usersInTrip: []
   }
 
   componentDidMount = () => {
+    const id = this.props.props.match.params.id
+    usersService.usersInTrip(id)
+    .then ( (response) => {
+      this.setState({
+        usersInTrip: response
+      })      
+    })
     usersService.getUsers()
     .then((response) =>{      
       this.setState({
@@ -47,7 +54,12 @@ class SearchBar extends Component {
     const id = this.props.props.match.params.id    
     tripsService.addUser(id, userId)
     .then((response) => {
-      return response;
+      usersService.usersInTrip(id)
+    .then ( (response) => {
+      this.setState({
+        usersInTrip: response
+      })      
+    })
     })
   }
 
@@ -58,8 +70,18 @@ class SearchBar extends Component {
           <input type="text" onChange={this.handleChange} value={this.state.value}/>
         </form>
         {this.state.showingUsers ? this.state.showingUsers.map((user) => {
-          return <button onClick={() => this.handleClickAddUser(user._id)} >{user.email}</button>
+          return <button onClick={() => this.handleClickAddUser(user._id)} >{user.name}</button>
         }) : null}
+        {this.state.usersInTrip ? this.state.usersInTrip.map((user) => {
+              if (user) {
+                return ( 
+                <section>
+                  <img src={user.image} alt='user'></img>
+                  <p>{user.name}</p>
+                </section>
+                )
+              }
+            }) : null}
       </div>
     )
   }

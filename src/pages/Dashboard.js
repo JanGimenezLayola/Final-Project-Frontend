@@ -8,8 +8,10 @@ import PopupUpdate from '../components/PopupUpdate.jsx'
 import SearchBar from '../components/SearchBar.jsx'
 
 import tripsService from '../services/trips-service';
-import moment from 'moment';
 import usersService from '../services/users-services';
+import tripInfoService from '../services/trip-info-service';
+
+import moment from 'moment';
 
 class Dashboard extends Component {
 
@@ -27,15 +29,9 @@ class Dashboard extends Component {
  
     const id = this.props.match.params.id
     const userId = this.props.user._id
-    
-    usersService.usersInTrip(id)
-    .then ( (response) => {
-      this.setState({
-        users: response
-      })
-      console.log(this.state);
-      
-    })
+
+    tripInfoService.getInfo()
+    .then ((response) => { console.log(response)})
     tripsService.activitiesList (id)
     .then( (response) => {    
       response.activities.sort(function(a, b) {
@@ -100,7 +96,10 @@ class Dashboard extends Component {
         }
            <>
           <article className='card'>
-          <Countdown timeTillDate={moment(this.state.date).format('MMMM DD YYYY, h:mm a')} timeFormat="MM DD YYYY, h:mm a" />
+            {moment().format('MMMM DD YYYY, h:mm a') > moment(this.state.date).format('MMMM DD YYYY, h:mm a') ?
+             <Countdown timeTillDate={moment(this.state.date).format('MMMM DD YYYY, h:mm a')} timeFormat="MM DD YYYY, h:mm a" /> 
+             :
+             <h3>Enjoy your trip!</h3>}
           </article>
           <article className='card card-activities'>
             <button onClick={this.togglePopup.bind(this)}>Add new activity</button> 
@@ -124,14 +123,8 @@ class Dashboard extends Component {
               )
             }): null }
           </article>         
-          <article className='card'>
+          <article className='card card-activities'>
             <SearchBar props={this.props} />
-            {console.log(this.state)}
-            {this.state.users ? this.state.users.map((user) => {
-              if (user) {
-                return <p>{user.email}</p>
-              }
-            }) : null}
           </article>
           <article className='card'>
 
