@@ -56,6 +56,7 @@ export default withFormik({
     const date = values.date;    
     tripsService.addActivity({ id, name, date })
     .then (response => {
+      window.location.reload();      
     })
     .catch( error => console.log(error) )
   },

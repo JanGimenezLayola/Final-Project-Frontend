@@ -78,18 +78,12 @@ export default withAuth(withFormik({
     })
   },
   handleSubmit(props, state)  {
-    console.log(props);
     const id = state.props.activityId
     const name = props.name;
-    const date = props.date;    
-    console.log(id);
-    console.log(name);
-    console.log(date);
-    
+    const date = props.date;       
     activityService.updateActivity( id, {name, date} )
-    .then (response => {
-      console.log('Response', response);
-      
+    .then (response => {      
+      window.location.reload();            
     })
     .catch( error => console.log(error) )
   },
