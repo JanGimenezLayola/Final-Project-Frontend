@@ -119,7 +119,7 @@ class Dashboard extends Component {
                   </section>
                 </article>
               )
-            }): <p>Oh! You don't have any activity yet, create one now and start planning your trip</p> }
+            }): <p id="no-activities">Oh! You don't have any activity yet, create one now and start planning your trip</p> }
           </article>         
           <article className='card card-activities'>
             <SearchBar props={this.props} />

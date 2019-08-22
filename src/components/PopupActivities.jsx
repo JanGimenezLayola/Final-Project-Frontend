@@ -34,14 +34,6 @@ if(this.state.redirect){
            <label htmlFor="date">Description</label>
            <Field className='date' type='datetime-local' name='date' />
           </section>
-          {/* <section>
-            <label htmlFor="Tickets">Description</label>
-            <Field type='file' name='tickets' />
-          </section> */}
-          {/* <section>
-            <label htmlFor="price">Description</label>
-            <Field type='number' name='price' placeholder='75' />
-          </section> */}
           <button onClick={this.handleSubmit}>Submit</button>
         </Form> 
       </div>  

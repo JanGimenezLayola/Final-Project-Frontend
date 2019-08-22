@@ -26,7 +26,11 @@
     border-radius: 12px;
     padding: 15px;
     text-align: center;
+    max-height: 65vh;
     overflow: scroll;
+    #no-activities {
+      padding: 17px 40px;
+    }
     img {
       height: 75px;
     }
@@ -72,7 +76,8 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: black 1px solid;
-    padding: 10px 5px;  }
+    padding: 10px 5px;  
+  }
     .addButton {
       border-radius: 15px;
       border: none;
@@ -86,7 +91,6 @@
       text-align: center;
       font-size: 17px;
       font-family: "Roboto Condensed", sans-serif;
-      padding: 5% 10%
     }
     .card-buttons {
       display: flex;
