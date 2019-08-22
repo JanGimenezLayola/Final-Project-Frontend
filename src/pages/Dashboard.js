@@ -25,27 +25,19 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
- 
     const id = this.props.match.params.id
-    const userId = this.props.user._id
-
-    // tripInfoService.getInfo()
-    // .then ((response) => { console.log('respospdnsisndi',response)})
     tripsService.activitiesList (id)
     .then( (response) => {    
       response.activities.sort(function(a, b) {
         return a.date>b.date ? 1 : a.date<b.date ? -1 : 0
       });
-      
       this.setState({
         name: response.name,
         country: response.country,
         date: response.date,
         activities: response.activities,
         searchbar: false
-      })   
-      console.log(this.state);
-      
+      })        
     })
     .catch(error => console.log(error) )
   }
