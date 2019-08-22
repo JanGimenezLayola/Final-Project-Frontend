@@ -50,6 +50,7 @@ class TripsList extends Component {
                 <a className='card' id='button-create' href="/trip/create"><p>Create a new trip</p></a>
                 {this.state.trips.length ? this.state.trips.map((trip)=> {
                   return (
+                  <section>
                     <section className='card'>
                       <Link to={`/dashboard/${trip._id}`} >
                         <h1>{trip.name}</h1>
@@ -61,6 +62,7 @@ class TripsList extends Component {
                         <img onClick={() => this.handleDelete(trip._id)} src='./../../delete-icon.png' alt='delete trip'></img>
                       </section>
                     </section>
+                  </section>
                   ) 
                 }) : 
                 <section className='no-trips-container'>

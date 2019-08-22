@@ -87,45 +87,47 @@ class Dashboard extends Component {
           : null 
         }
            <>
-           <h2>Your trip starts in ...</h2>
-          <article className='card'>
-            {moment().format('MMMM DD YYYY, h:mm a') > moment(this.state.date).format('MMMM DD YYYY, h:mm a') ?
-            <Countdown timeTillDate={moment(this.state.date).format('MMMM DD YYYY, h:mm a')} timeFormat="MM DD YYYY, h:mm a" /> 
-             :
-             <h3>Enjoy your trip! ✈️</h3>}
-          </article>
+           <section>
+            <h2>Your trip starts in ...</h2>
+            <article className='card'>
+              {moment().format('MMMM DD YYYY, h:mm a') > moment(this.state.date).format('MMMM DD YYYY, h:mm a') ?
+              <Countdown timeTillDate={moment(this.state.date).format('MMMM DD YYYY, h:mm a')} timeFormat="MM DD YYYY, h:mm a" /> 
+              :
+              <h3>Enjoy your trip! ✈️</h3>}
+            </article>
+           </section>
+           <section>
             <h2>Activities</h2>
-          <article className='card card-activities'>
-            <button className='addButton' onClick={this.togglePopup.bind(this)}><img src='./../../add.png' alt='add activity'></img></button> 
-            {this.state.activities.length > 0 ? this.state.activities.map((activity) => {
-              return (
-                <article className='activities'>
-                  <section className='date-hour'>
-                    <h3>{moment(activity.date).format('H:mm')}</h3>
-                    <section>
-                      <h3>{moment(activity.date).format('DD')}</h3>
-                      <h3>/</h3>
-                      <h3>{moment(activity.date).format('MMM')}</h3>
+            <article className='card card-activities'>
+              <button className='addButton' onClick={this.togglePopup.bind(this)}><img src='./../../add.png' alt='add activity'></img></button> 
+              {this.state.activities.length > 0 ? this.state.activities.map((activity) => {
+                return (
+                  <article className='activities'>
+                    <section className='date-hour'>
+                      <h3>{moment(activity.date).format('H:mm')}</h3>
+                      <section>
+                        <h3>{moment(activity.date).format('DD')}</h3>
+                        <h3>/</h3>
+                        <h3>{moment(activity.date).format('MMM')}</h3>
+                      </section>
                     </section>
-                  </section>
-                  <h3 >{activity.name}</h3>  
-                  <section>
-                    <img onClick={() => {this.handleDelete(activity._id)}} src='./../../delete-icon.png' alt='delete trip'></img>
-                    <button onClick={this.togglePopupUpdate.bind(this, activity._id)}>Edit</button> 
-                  </section>
-                </article>
-              )
-            }): <p id="no-activities">Oh! You don't have any activity yet, create one now and start planning your trip</p> }
-          </article>         
-          <h2>your adventure team</h2>
-          <article className='card card-activities'>
-           <SearchBar props={this.props} /> 
-          </article>
-          <article className='card'>
-
-          </article>
-          </>   
-        
+                    <h3 >{activity.name}</h3>  
+                    <section>
+                      <img onClick={() => {this.handleDelete(activity._id)}} src='./../../delete-icon.png' alt='delete trip'></img>
+                      <button onClick={this.togglePopupUpdate.bind(this, activity._id)}>Edit</button> 
+                    </section>
+                  </article>
+                )
+              }): <p id="no-activities">Oh! You don't have any activity yet, create one now and start planning your trip</p> }
+            </article>         
+           </section>
+           <section>
+            <h2>your adventure team</h2>
+            <article className='card card-activities'>
+            <SearchBar props={this.props} /> 
+            </article>
+           </section>
+          </>    
       </section>
     )
   }
