@@ -1,7 +1,6 @@
 import React from 'react';  
 import activityService from '../services/activities-service';
 
-import { Redirect } from 'react-router-dom';
 import withAuth from './../components/withAuth';
 
 import { withFormik, Form, Field } from 'formik';
@@ -21,9 +20,7 @@ class PopupUpdate extends React.Component {
   componentDidMount() {
     const id = this.props.activityId
     activityService.oneActivity (id)
-    .then( (response) => {    
-      console.log(response);
-       
+    .then( (response) => {           
       this.setState({
         name: response.name,
         country: response.country,
@@ -35,14 +32,11 @@ class PopupUpdate extends React.Component {
   }
 
   render() {  
-if(this.state.redirect){
-  return (<Redirect to='/'/>)
-}
     return (  
       
     <div className='popup'>  
-      <div className='popup\_inner card'>  
-        <button onClick={this.props.closePopup}>X</button>  
+      <div className='popup-inner'>  
+        <button onClick={this.props.closePopup}><img src='./../../close.png' alt='delete trip'></img></button>  
         <Form className='create-activity' autoComplete="off" redirect={this.state.redirect}>
           <h1>{this.props.text}</h1>
           <section>
