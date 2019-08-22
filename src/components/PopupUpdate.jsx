@@ -45,7 +45,6 @@ if(this.state.redirect){
         <button onClick={this.props.closePopup}>X</button>  
         <Form className='create-activity' autoComplete="off" redirect={this.state.redirect}>
           <h1>{this.props.text}</h1>
-          {console.log(this.props)}
           <section>
             <label htmlFor="name">Name</label>
             <Field type='name' name='name' placeholder={this.state.name} />
@@ -54,14 +53,6 @@ if(this.state.redirect){
            <label htmlFor="date">Description</label>
            <Field className='date' type='datetime-local' name='date'  placeholder={this.state.date}/>
           </section>
-          {/* <section>
-            <label htmlFor="Tickets">Description</label>
-            <Field type='file' name='tickets' />
-          </section> */}
-          {/* <section>
-            <label htmlFor="price">Description</label>
-            <Field type='number' name='price' placeholder='75' />
-          </section> */}
           <button type='submit'>Submit</button>
         </Form> 
       </div> 
