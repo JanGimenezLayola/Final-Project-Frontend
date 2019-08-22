@@ -88,7 +88,7 @@ class Dashboard extends Component {
           : null 
         }
            <>
-           <section>
+           <section className='countdown'>
             <h2>Your trip starts in ...</h2>
             <article className='card'>
               {moment().format('MMMM DD YYYY, h:mm a') > moment(this.state.date).format('MMMM DD YYYY, h:mm a') ?
@@ -97,7 +97,7 @@ class Dashboard extends Component {
               <h3>Enjoy your trip! ✈️</h3>}
             </article>
            </section>
-           <section>
+           <section className='activities-box'>
             <h2>Activities</h2>
             <article className='card card-activities'>
               <button className='addButton' onClick={this.togglePopup.bind(this)}><img src='./../../add.png' alt='add activity'></img></button> 
@@ -122,7 +122,7 @@ class Dashboard extends Component {
               }): <p id="no-activities">Oh! You don't have any activity yet, create one now and start planning your trip</p> }
             </article>         
            </section>
-           <section>
+           <section className='colleagues'>
             <h2>your adventure team</h2>
             <article className='card card-activities'>
             <SearchBar props={this.props} /> 
