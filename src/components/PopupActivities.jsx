@@ -34,7 +34,7 @@ if(this.state.redirect){
            <label htmlFor="date">Description</label>
            <Field className='date' type='datetime-local' name='date' />
           </section>
-          <button onClick={this.handleSubmit}>Submit</button>
+          <button type='submit'>Submit</button>
         </Form> 
       </div>  
     </div>  
