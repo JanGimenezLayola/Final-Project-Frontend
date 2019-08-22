@@ -1,8 +1,6 @@
 import React from 'react';  
 import tripsService from '../services/trips-service';
 
-import { Redirect } from 'react-router-dom';
-
 import { withFormik, Form, Field } from 'formik';
 // import * as Yup from 'yup'
 
@@ -15,9 +13,6 @@ class Popup extends React.Component {
   }
 
   render() {  
-if(this.state.redirect){
-  return (<Redirect to='/'/>)
-}
     return (  
       
     <div className='popup'>  

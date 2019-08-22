@@ -8,8 +8,6 @@ import PopupUpdate from '../components/PopupUpdate.jsx'
 import SearchBar from '../components/SearchBar.jsx'
 
 import tripsService from '../services/trips-service';
-import usersService from '../services/users-services';
-import tripInfoService from '../services/trip-info-service';
 
 import moment from 'moment';
 
