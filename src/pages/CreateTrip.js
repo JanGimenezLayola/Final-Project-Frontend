@@ -3,7 +3,7 @@ import withAuth from '../components/withAuth';
 
 import tripsService from '../services/trips-service';
 
-import {BrowserRouter as Redirect} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 
 // import Redirect from 'react-router-dom'
 
@@ -102,6 +102,7 @@ class CreateTrip extends Component {
           <button className='submit-button' type='submit'>Create trip</button>
         </div>
       </Form>
+      {this.state.redirect ? <Redirect to='/'/> : null}
     </section>
     )
   }
@@ -118,13 +119,15 @@ export default withAuth(withFormik({
   },
   
     handleSubmit(values,  {...bag})  {
+      console.log(bag);
+      
     const name = values.name;
     const country = values.country;
     const date = values.date;
     const finaldate = values.finaldate;
     tripsService.add({ name, country, date, finaldate })
     .then( (response) => {            
-      console.log(response);
+      bag.props.history.push('/')
       
     })
     .catch( error => console.log(error) )
