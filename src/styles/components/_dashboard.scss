@@ -16,6 +16,10 @@
       font-family: "Roboto Condensed", sans-serif;
     }
   }
+  h2 {
+    width: 100%;
+    text-align: center;
+  }
   .card {
     display: flex;
     flex-direction: row;
@@ -60,6 +64,11 @@
       border-bottom: black 1px solid;
       padding: 10px 7px;
       font-family: "Roboto Condensed", sans-serif;
+      section {
+        img {
+          height: 30px;
+        }
+      }
       .date-hour {
         display: flex;
         flex-direction: column;

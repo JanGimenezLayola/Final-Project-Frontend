@@ -13,7 +13,8 @@ class SearchBar extends Component {
     users: [],
     showingUsers: [],
     searchValue: null,
-    usersInTrip: []
+    usersInTrip: [],
+    searchbar: false
   }
 
   componentDidMount = () => {
@@ -63,25 +64,35 @@ class SearchBar extends Component {
     })
   }
 
+  toggleSearchbar() {    
+    this.setState({  
+      searchbar: !this.state.searchbar,
+    })
+  }
+
   render() {
     return (
-      <div>
-        <form>
-          <input type="text" onChange={this.handleChange} value={this.state.value}/>
-        </form>
+      <div className='searchbar'>
+        {this.state.searchbar ? <button className='addButton' onClick={() => this.toggleSearchbar()}><img  src='./../../delete-icon.png'  alt='add activity'></img></button> : <button className='addButton' onClick={() => this.toggleSearchbar()}><img src='./../../add.png' alt='add activity'></img></button> }
+        {this.state.searchbar ?   <form>
+          <input type="text" onChange={this.handleChange} value={this.state.value} placeholder='Search users'/>
+        </form> : null}
+      
         {this.state.showingUsers ? this.state.showingUsers.map((user) => {
           return <button onClick={() => this.handleClickAddUser(user._id)} >{user.name}</button>
         }) : null}
-        {this.state.usersInTrip ? this.state.usersInTrip.map((user) => {
-              if (user) {
-                return ( 
-                <section>
-                  <img src={user.image} alt='user'></img>
-                  <p>{user.name}</p>
-                </section>
-                )
-              }
-            }) : null}
+        <section>
+          {this.state.usersInTrip ? this.state.usersInTrip.map((user) => {
+            if (user) {
+              return ( 
+              <section>
+                <img src={user.image} alt='user'></img>
+                <p>{user.name}</p>
+              </section>
+              )
+            }
+          }) : <p>Invite your coleagues and plan your trip together</p>}
+        </section>
       </div>
     )
   }

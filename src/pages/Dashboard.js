@@ -22,7 +22,8 @@ class Dashboard extends Component {
     showPopup: false,
     updatePopup: false,
     activities: [],
-    users: []
+    users: [],
+    searchbar: false
   }
 
   componentDidMount() {
@@ -42,7 +43,8 @@ class Dashboard extends Component {
         name: response.name,
         country: response.country,
         date: response.date,
-        activities: response.activities
+        activities: response.activities,
+        searchbar: false
       })   
       console.log(this.state);
       
@@ -71,6 +73,8 @@ class Dashboard extends Component {
     })
   }
 
+
+
   render() {     
     return (
       <section className='dashboard-container'>
@@ -93,12 +97,14 @@ class Dashboard extends Component {
           : null 
         }
            <>
+           <h2>Your trip starts in ...</h2>
           <article className='card'>
             {moment().format('MMMM DD YYYY, h:mm a') > moment(this.state.date).format('MMMM DD YYYY, h:mm a') ?
             <Countdown timeTillDate={moment(this.state.date).format('MMMM DD YYYY, h:mm a')} timeFormat="MM DD YYYY, h:mm a" /> 
              :
              <h3>Enjoy your trip! ✈️</h3>}
           </article>
+            <h2>Activities</h2>
           <article className='card card-activities'>
             <button className='addButton' onClick={this.togglePopup.bind(this)}><img src='./../../add.png' alt='add activity'></img></button> 
             {this.state.activities.length > 0 ? this.state.activities.map((activity) => {
@@ -114,15 +120,16 @@ class Dashboard extends Component {
                   </section>
                   <h3 >{activity.name}</h3>  
                   <section>
-                    <button onClick={() => {this.handleDelete(activity._id)}}>X</button>
+                    <img onClick={() => {this.handleDelete(activity._id)}} src='./../../delete-icon.png' alt='delete trip'></img>
                     <button onClick={this.togglePopupUpdate.bind(this, activity._id)}>Edit</button> 
                   </section>
                 </article>
               )
             }): <p id="no-activities">Oh! You don't have any activity yet, create one now and start planning your trip</p> }
           </article>         
+          <h2>your adventure team</h2>
           <article className='card card-activities'>
-            <SearchBar props={this.props} />
+           <SearchBar props={this.props} /> 
           </article>
           <article className='card'>
 

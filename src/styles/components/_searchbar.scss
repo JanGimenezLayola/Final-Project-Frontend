@@ -1,0 +1,32 @@
+.searchbar {
+  width: 100%;
+  form {
+    width: 100%;
+    input {
+      width: 100%;
+      border-radius: 10px;
+      text-align: center;
+      border: none;
+      padding: 5px;
+      font-size: 15px;
+      margin: 5px 0 10px 0;
+    }
+  }
+  section {
+    display: flex;
+    flex-direction: row;
+    section {
+      display: flex;
+      flex-direction: column;
+      width: 83px;
+      height: auto;
+      margin: 5px 8px;
+      img {
+        height: 100%;
+      }
+      p {
+        font-size: 18px;
+      }
+    }
+  }
+}
