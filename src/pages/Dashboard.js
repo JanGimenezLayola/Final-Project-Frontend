@@ -67,8 +67,9 @@ class Dashboard extends Component {
 
   render() {     
     return (
+      <>
+      <h1 className='trip-name'>{this.state.name}</h1>
       <section className='dashboard-container'>
-        <h1 className='trip-name'>{this.state.name}</h1>
         {this.state.showPopup ?  
           <Popup  
             text='Add a new activity'  
@@ -129,6 +130,7 @@ class Dashboard extends Component {
            </section>
           </>    
       </section>
+    </>
     )
   }
 }

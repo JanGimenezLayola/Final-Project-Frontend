@@ -46,8 +46,9 @@ class TripsList extends Component {
   
   render() {       
     return (
-           <section className='dashboard-container'>
+      <>
                 <a className='card' id='button-create' href="/trip/create"><p>Create a new trip</p></a>
+           <section className='dashboard-container'>
                 {this.state.trips.length ? this.state.trips.map((trip)=> {
                   return (
                   <section>
@@ -71,6 +72,7 @@ class TripsList extends Component {
                 </section>
                 }
             </section>
+          </>
     )
   }
 }
