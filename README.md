@@ -1,6 +1,6 @@
 
 
-# Final Project
+# Planify
 
 <br>
 
@@ -241,10 +241,10 @@ The url to your repository and to your deployed project
 
 [Server repository Link](https://github.com/screeeen/project-server)
 
-[Deployed App Link](http://heroku.com)
+[Deployed App Link](https://ironhack-final-project-b7446.firebaseapp.com)
 
 ### Slides
 
 The url to your presentation slides
 
-[Slides Link](http://slides.com)
+[Slides Link](https://docs.google.com/presentation/d/1eQrGmszg9yC_1e1H4zUJC2KCGI0vrPOFcfNiLj5KOjI/edit?usp=sharing)
